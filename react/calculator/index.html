@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const getCalcResult = (num1, num2, operValue) => {
+      const [n1, n2] = [Number(num1), Number(num2)];
+      if (operValue === "0") return String(n1 + n2);
+      if (operValue === "1") return String(n1 - n2);
+      if (operValue === "2") return String(n1 * n2);
+      if (operValue === "3" && n2 !== 0) return String(n1 / n2);
+      else return "ERROR";
+    };
+
+    function App() {
+      const [num1, setNum1] = React.useState(null);
+      const [num2, setNum2] = React.useState(null);
+      const [oper, setOper] = React.useState(null);
+      const [result, setResult] = React.useState(null);
+
+      const onOperChange = (event) => {
+        setOper(event.target.value);
+      };
+
+      const onNumChange = (event) => {
+        const inputNumId = event.target.id;
+        const value = event.target.value;
+
+        if (inputNumId === "1") {
+          setNum1(value);
+        } else if (inputNumId === "2") {
+          setNum2(value);
+        }
+      };
+
+      const onSubmit = (event) => {
+        event.preventDefault();
+        if (!num1 || !num2 || !oper) {
+          alert("입력칸을 모두 채워주세요");
+          return;
+        }
+
+        const result = getCalcResult(num1, num2, oper);
+        setResult(result);
+      };
+
+      return (
+        <div className="container">
+          <h1>🔥 Calculator 🔥</h1>
+          <form onSubmit={onSubmit}>
+            <input
+              type="number"
+              id="1"
+              placeholder="Write a number..."
+              onChange={onNumChange}
+              required
+            />
+            <input
+              type="number"
+              id="2"
+              placeholder="And another one..."
+              onChange={onNumChange}
+              required
+            />
+            <select
+              name="operation"
+              onChange={onOperChange}
+              required
+            >
+              <option
+                value="-1"
+                disabled
+                selected
+              >
+                Select Operation
+              </option>
+              <option value="0">+</option>
+              <option value="1">-</option>
+              <option value="2">*</option>
+              <option value="3">/</option>
+            </select>
+            <button>Calculate</button>
+          </form>
+          {result && <h1>The Result is : {result}</h1>}
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

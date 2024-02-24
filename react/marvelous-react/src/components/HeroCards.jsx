@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import * as S from "../styles/herocards.styled";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroCards({ heros = [] }) {
   return (
@@ -22,6 +23,8 @@ HeroCards.propTypes = {
 function HeroCard({ hero }) {
   const cardRef = useRef(null);
   const overlayRef = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const card = cardRef.current;
@@ -61,7 +64,12 @@ function HeroCard({ hero }) {
 
   return (
     <>
-      <S.Card ref={cardRef}>
+      <S.Card
+        ref={cardRef}
+        onClick={() => {
+          navigate(`/character/${hero.id}`);
+        }}
+      >
         <S.CardOverlay ref={overlayRef} />
         <S.CardImg $imgUrl={`${hero.thumbnail.path}.jpg`}>
           <S.CardText>{hero.name.split("(")[0].trim()}</S.CardText>

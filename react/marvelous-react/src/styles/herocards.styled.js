@@ -19,6 +19,7 @@ export const Card = styled.div`
   height: 420px;
   border-radius: 6px;
   box-sizing: content-box;
+  cursor: pointer;
 `;
 export const CardImg = styled.div`
   width: 100%;

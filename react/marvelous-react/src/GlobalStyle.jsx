@@ -55,6 +55,9 @@ body {
     background-color: black;
 	color: white;
 }
+* {
+	box-sizing: border-box;
+}
 `;
 
 export default GlobalStyle;

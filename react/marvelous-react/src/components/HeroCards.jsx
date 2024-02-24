@@ -5,7 +5,10 @@ export default function HeroCards({ heros = [] }) {
   return (
     <Wrapper>
       {heros.map((hero) => (
-        <Child key={hero.id}>
+        <Child
+          key={hero.id}
+          $imgUrl={`${hero.thumbnail.path}.jpg`}
+        >
           <h1>{hero.name}</h1>
         </Child>
       ))}
@@ -22,13 +25,17 @@ const Wrapper = styled.div`
   min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  grid-row-gap: 40px;
-  padding: 60px 40px;
+  grid-row-gap: 60px;
+  padding: 60px 0;
+  max-width: 1400px;
 `;
 
 const Child = styled.div`
-  width: 300px;
+  width: 280px;
   height: 400px;
   background-color: teal;
   justify-self: center;
+  background-image: url(${(props) => props.$imgUrl});
+  background-size: cover;
+  background-position: center;
 `;

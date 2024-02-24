@@ -46,10 +46,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 20px;
+  padding: 46px 40px;
 `;
 const Title = styled.h1`
-  font-size: 44px;
+  font-size: 52px;
 `;
 
 export default Root;

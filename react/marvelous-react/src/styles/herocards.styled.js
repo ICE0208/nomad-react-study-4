@@ -11,12 +11,14 @@ export const Wrapper = styled.div`
 `;
 
 export const Card = styled.div`
+  position: relative;
   background-color: white;
   justify-self: center;
   padding: 8px;
   width: 290px;
   height: 420px;
   border-radius: 6px;
+  box-sizing: content-box;
 `;
 export const CardImg = styled.div`
   width: 100%;
@@ -41,4 +43,22 @@ export const CardText = styled.p`
   font-weight: bold;
   border-top: 2px solid black;
   opacity: 0.9;
+`;
+
+export const CardOverlay = styled.div`
+  position: absolute;
+  width: 290px;
+  height: 420px;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    #000000 45%,
+    rgba(255, 228, 148, 0.5) 40%,
+    rgba(206, 177, 249, 0.4) 50%,
+    transparent 54%
+  );
+  filter: brightness(5) opacity(0);
+  mix-blend-mode: color-dodge;
+  background-size: 150% 150%;
+  background-position: 100%;
 `;

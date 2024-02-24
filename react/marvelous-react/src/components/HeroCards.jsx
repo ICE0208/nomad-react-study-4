@@ -7,12 +7,20 @@ import useCardAnimation from "../animations/useCardAnimation";
 export default function HeroCards({ heros = [] }) {
   const [clickedId, setClickedId] = useState(null);
   const matchRoot = useMatch("/");
+  const matchCharacter = useMatch("/character/:id");
+  const navigator = useNavigate();
 
   useEffect(() => {
     if (matchRoot && clickedId) {
       setClickedId(null);
     }
   }, [matchRoot, clickedId]);
+
+  useEffect(() => {
+    if (matchCharacter && clickedId === null) {
+      navigator("/");
+    }
+  });
 
   return (
     <S.Wrapper>

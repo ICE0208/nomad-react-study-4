@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeroCards from "./components/HeroCards";
-
-let isApiCalled = false;
 
 function Root() {
   const [heroList, setHeroList] = useState([]);
@@ -27,10 +24,7 @@ function Root() {
   };
 
   useEffect(() => {
-    if (isApiCalled) return;
-
     getCharacterList();
-    isApiCalled = true;
   }, []);
 
   return (

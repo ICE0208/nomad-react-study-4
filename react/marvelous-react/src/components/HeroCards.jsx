@@ -5,11 +5,10 @@ export default function HeroCards({ heros = [] }) {
   return (
     <S.Wrapper>
       {heros.map((hero) => (
-        <S.Card key={hero.id}>
-          <S.CardImg $imgUrl={`${hero.thumbnail.path}.jpg`}>
-            <S.CardText>{hero.name.split("(")[0].trim()}</S.CardText>
-          </S.CardImg>
-        </S.Card>
+        <HeroCard
+          key={hero.id}
+          hero={hero}
+        />
       ))}
     </S.Wrapper>
   );
@@ -17,4 +16,18 @@ export default function HeroCards({ heros = [] }) {
 
 HeroCards.propTypes = {
   heros: PropTypes.array,
+};
+
+function HeroCard({ hero }) {
+  return (
+    <S.Card>
+      <S.CardImg $imgUrl={`${hero.thumbnail.path}.jpg`}>
+        <S.CardText>{hero.name.split("(")[0].trim()}</S.CardText>
+      </S.CardImg>
+    </S.Card>
+  );
+}
+
+HeroCard.propTypes = {
+  hero: PropTypes.object,
 };

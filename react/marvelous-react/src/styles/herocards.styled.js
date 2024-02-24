@@ -32,6 +32,7 @@ export const CardImg = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   border: 2px solid black;
+  overflow: hidden;
 `;
 export const CardText = styled.p`
   text-align: center;

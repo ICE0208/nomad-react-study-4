@@ -5,12 +5,11 @@ export default function HeroCards({ heros = [] }) {
   return (
     <Wrapper>
       {heros.map((hero) => (
-        <Child
-          key={hero.id}
-          $imgUrl={`${hero.thumbnail.path}.jpg`}
-        >
-          <h1>{hero.name}</h1>
-        </Child>
+        <Card key={hero.id}>
+          <CardImg $imgUrl={`${hero.thumbnail.path}.jpg`}>
+            <CardText>{hero.name.split("(")[0].trim()}</CardText>
+          </CardImg>
+        </Card>
       ))}
     </Wrapper>
   );
@@ -30,12 +29,34 @@ const Wrapper = styled.div`
   max-width: 1400px;
 `;
 
-const Child = styled.div`
-  width: 280px;
-  height: 400px;
-  background-color: teal;
+const Card = styled.div`
+  background-color: white;
   justify-self: center;
+  padding: 8px;
+  width: 290px;
+  border-radius: 6px;
+`;
+const CardImg = styled.div`
+  width: 100%;
+  height: 400px;
+
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;
   background-position: center;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 2px solid black;
+`;
+const CardText = styled.p`
+  text-align: center;
+  background-color: white;
+  font-size: 18px;
+  color: black;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  border-top: 2px solid black;
+  opacity: 0.9;
 `;

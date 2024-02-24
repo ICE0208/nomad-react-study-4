@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import HeroCards from "./components/HeroCards";
+import { Outlet } from "react-router-dom";
 
 function Root() {
   const [heroList, setHeroList] = useState([]);
@@ -31,6 +32,7 @@ function Root() {
     <Wrapper>
       <Title>Marvel Characters</Title>
       <HeroCards heros={heroList} />
+      <Outlet />
     </Wrapper>
   );
 }

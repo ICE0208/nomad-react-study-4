@@ -9,11 +9,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    children: [
+      {
+        path: "/character/:id",
+        element: <Character />,
+      },
+    ],
   },
-  {
-    path: "character/:id",
-    element: <Character />,
-  },
+  {},
   {
     path: "/*",
     element: <h1>Not FOUND</h1>,

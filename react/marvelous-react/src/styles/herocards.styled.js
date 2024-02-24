@@ -10,15 +10,15 @@ export const Wrapper = styled.div`
   max-width: 1400px;
 `;
 
+export const CARD_WIDTH = "300";
 export const Card = styled.div`
   position: relative;
   background-color: white;
   justify-self: center;
   padding: 8px;
-  width: 290px;
+  width: ${CARD_WIDTH}px;
   height: 420px;
   border-radius: 6px;
-  box-sizing: content-box;
   cursor: pointer;
 `;
 export const CardImg = styled.div`

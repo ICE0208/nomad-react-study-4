@@ -54,6 +54,10 @@ table {
 body {
     background-color: black;
 	color: white;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
 }
 * {
 	box-sizing: border-box;

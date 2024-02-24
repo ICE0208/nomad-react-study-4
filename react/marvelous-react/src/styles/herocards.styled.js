@@ -15,11 +15,12 @@ export const Card = styled.div`
   justify-self: center;
   padding: 8px;
   width: 290px;
+  height: 420px;
   border-radius: 6px;
 `;
 export const CardImg = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100%;
 
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;

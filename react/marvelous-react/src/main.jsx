@@ -1,9 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import Root from "./Root.jsx";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Character from "./Character.jsx";
+import GlobalStyle from "./GlobalStyle.jsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+  {
+    path: "character/:id",
+    element: <Character />,
+  },
+  {
+    path: "/*",
+    element: <h1>Not FOUND</h1>,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

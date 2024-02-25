@@ -6,7 +6,6 @@ export default function useScrollable(initScrollable) {
 
   const preventScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
-    console.log(currentScrollY);
     document.body.style.position = "fixed";
     document.body.style.width = "100%";
     document.body.style.top = `-${currentScrollY}px`; // 현재 스크롤 위치

@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import HeroCards from "./components/HeroCards";
-import { Outlet } from "react-router-dom";
+import { Outlet, useMatch } from "react-router-dom";
+import useScrollable from "./hooks/useScrollable";
 
 function Root() {
   const [heroList, setHeroList] = useState([]);
+  const { setScrollable } = useScrollable(true);
+
+  const matchRoot = useMatch("/");
+
+  useEffect(() => {
+    setScrollable(Boolean(matchRoot));
+  }, [matchRoot, setScrollable]);
 
   const getCharacterList = async () => {
     try {

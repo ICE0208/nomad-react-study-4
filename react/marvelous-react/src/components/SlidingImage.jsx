@@ -90,7 +90,7 @@ const SlidingTitle = styled.h3`
 `;
 
 SlidingImage.propTypes = {
-  infos: PropTypes.array.isRequired,
+  infos: PropTypes.array,
   title: PropTypes.string.isRequired,
 };
 

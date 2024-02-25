@@ -9,8 +9,6 @@ export const getCharacterComicsURL = (id) =>
 
 export const getCharacterSeriesURL = (id) =>
   `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}/series`;
-export const getCharacterStoriesURL = (id) =>
-  `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}/stories`;
 
 export const getCharacterEventsURL = (id) =>
   `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}/events`;

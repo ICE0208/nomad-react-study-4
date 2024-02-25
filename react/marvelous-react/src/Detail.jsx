@@ -9,7 +9,7 @@ import SlidingImage from "./components/SlidingImage";
 export default function Detail() {
   const contentRef = useRef(null);
   const { id } = useParams();
-  const { characterInfo, comicsInfo, seriesInfo, storiesInfo, eventsInfo } =
+  const { characterInfo, comicsInfo, seriesInfo, eventsInfo } =
     useDetailInfo(id);
   const navigator = useNavigate();
 
@@ -80,10 +80,6 @@ export default function Detail() {
             title="EVENTS"
             infos={eventsInfo}
           />
-          <SlidingImage
-            title="STORIES"
-            infos={storiesInfo}
-          />
         </DescriptionArea>
       </Modal>
     </Wrapper>
@@ -144,6 +140,6 @@ const DescriptionArea = styled.div`
   padding: 0 36px;
   flex-grow: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;

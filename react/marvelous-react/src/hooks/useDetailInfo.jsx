@@ -4,14 +4,12 @@ import {
   getCharacterDetailURL,
   getCharacterEventsURL,
   getCharacterSeriesURL,
-  getCharacterStoriesURL,
 } from "../utils/getURL";
 
 export default function useDetailInfo(id) {
   const [characterInfo, setCharacterInfo] = useState(null);
   const [comicsInfo, setComicsInfo] = useState(null);
   const [seriesInfo, setSeriesInfo] = useState(null);
-  const [storiesInfo, setStoriesInfo] = useState(null);
   const [eventsInfo, setEventsInfo] = useState(null);
 
   const getCharacterInfo = async (id) => {
@@ -42,10 +40,9 @@ export default function useDetailInfo(id) {
   useEffect(() => {
     getCharacterInfo(id);
     getListInfo(getCharacterComicsURL(id), setComicsInfo);
-    getListInfo(getCharacterStoriesURL(id), setStoriesInfo);
     getListInfo(getCharacterEventsURL(id), setEventsInfo);
     getListInfo(getCharacterSeriesURL(id), setSeriesInfo);
   }, [id]);
 
-  return { characterInfo, comicsInfo, seriesInfo, storiesInfo, eventsInfo };
+  return { characterInfo, comicsInfo, seriesInfo, eventsInfo };
 }

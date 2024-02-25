@@ -1,8 +1,15 @@
-# React + Vite
+# React 기초 졸업과제
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 마블 캐릭터 사이트 만들기
 
-Currently, two official plugins are available:
+> 목적: 리액트의 기본기를 연습한다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 배포
+
+[🔗Codesandbox](https://codesandbox.io/p/devbox/marvelous-react-9m6w4f)
+
+### 완성 사진
+
+| <center>메인</center>         | <center>디테일 창</center>    |
+| ----------------------------- | ----------------------------- |
+| <img src="./img/1.png"></img> | <img src="./img/2.png"></img> |

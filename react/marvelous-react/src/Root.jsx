@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HeroCards from "./components/HeroCards";
 import { Outlet, useMatch } from "react-router-dom";
 import useScrollable from "./hooks/useScrollable";
+import { getCharacterListURL } from "./utils/getURL";
 
 function Root() {
   const [heroList, setHeroList] = useState([]);
@@ -16,9 +17,7 @@ function Root() {
 
   const getCharacterList = async () => {
     try {
-      const response = await fetch(
-        "https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=50&orderBy=modified&series=24229,1058,2023"
-      );
+      const response = await fetch(getCharacterListURL());
       const json = await response.json();
       const results = json?.data?.results;
 

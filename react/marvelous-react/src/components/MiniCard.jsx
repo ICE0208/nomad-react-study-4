@@ -30,19 +30,18 @@ MiniCard.propTypes = {
 
 export const Card = styled.div`
   position: relative;
-  background-color: white;
+  background-color: #fffffffb;
   justify-self: center;
   padding: 6px;
   width: 170px;
   height: 235px;
   border-radius: 6px;
-  cursor: pointer;
   overflow: hidden;
 `;
 export const CardImg = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #9d9d9d;
+  background-color: #000000ad;
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;
   background-position: center;
@@ -67,4 +66,5 @@ export const CardText = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 28px;
 `;

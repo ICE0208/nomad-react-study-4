@@ -1,9 +1,8 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import Root from "./Root.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Character from "./Character.jsx";
 import GlobalStyle from "./GlobalStyle.jsx";
+import Detail from "./Detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +11,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/character/:id",
-        element: <Character />,
+        element: <Detail />,
       },
     ],
   },

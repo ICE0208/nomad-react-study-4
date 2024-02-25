@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import * as S from "../styles/herocards.styled";
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
 

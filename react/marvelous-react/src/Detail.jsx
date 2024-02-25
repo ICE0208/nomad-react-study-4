@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import useDetailInfo from "./hooks/useDetailInfo";
 import Button from "./components/Button";
 import ComicImgs from "./components/ComicImgs";
 
-export default function Character() {
+export default function Detail() {
   const contentRef = useRef(null);
   const { id } = useParams();
   const { characterInfo, comicsInfo } = useDetailInfo(id);

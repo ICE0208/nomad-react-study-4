@@ -57,7 +57,7 @@ export default function useCardAnimation(clicked) {
       card.style.transition = "transform 0.8s";
       card.style.transform = `translate(${
         -1 * relativeLeft + width / 2 - CARD_WIDTH / 2
-      }px, ${-1 * relativeTop + 80}px) rotateY(360deg) scale(1.2)`;
+      }px, ${-1 * relativeTop + 65}px) rotateY(360deg) scale(1.1)`;
       card.style.zIndex = "500";
     } else {
       const card = cardRef.current;

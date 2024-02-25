@@ -40,7 +40,10 @@ export default function Character() {
             }}
           />
         </ButtonArea>
-        {characterInfo && <h1>{characterInfo.description}</h1>}
+        <SomethingArea></SomethingArea>
+        <DescriptionArea>
+          {characterInfo && <h1>{characterInfo.description}</h1>}
+        </DescriptionArea>
       </Modal>
     </Wrapper>
   );
@@ -65,10 +68,22 @@ const Modal = styled.div`
   height: 760px;
   transition: opacity 0.3s ease-in-out;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
 `;
 
 const ButtonArea = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+`;
+const SomethingArea = styled.div`
+  width: 100%;
+  flex-grow: 1;
+`;
+const DescriptionArea = styled.div`
+  width: 100%;
+  font-size: 18px;
+  color: whitesmoke;
 `;

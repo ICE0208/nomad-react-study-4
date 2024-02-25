@@ -22,6 +22,9 @@ export const getBigImageURL = (thumbnail) => {
 
 export const getSmallImageURL = (thumbnail) => {
   if (thumbnail) {
+    if (thumbnail.path.includes("not")) {
+      return "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_xlarge.jpg";
+    }
     return `${thumbnail.path}/portrait_fantastic.jpg`;
   }
   return "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_xlarge.jpg";

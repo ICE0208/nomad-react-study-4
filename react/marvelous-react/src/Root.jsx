@@ -6,7 +6,7 @@ import useScrollable from "./hooks/useScrollable";
 import { getCharacterListURL } from "./utils/getURL";
 
 function Root() {
-  const [heroList, setHeroList] = useState([]);
+  const [heroList, setHeroList] = useState(null);
   const { setScrollable } = useScrollable(true);
 
   const matchRoot = useMatch("/");
@@ -38,7 +38,13 @@ function Root() {
   return (
     <Wrapper>
       <Title>Marvel Characters</Title>
-      <HeroCards heros={heroList} />
+      {heroList === null ? (
+        <Loading>
+          <LoadingText>loading...</LoadingText>
+        </Loading>
+      ) : (
+        <HeroCards heros={heroList} />
+      )}
       <Outlet />
     </Wrapper>
   );
@@ -52,7 +58,16 @@ const Wrapper = styled.div`
   padding: 46px 40px;
 `;
 const Title = styled.h1`
-  font-size: 52px;
+  font-size: 60px;
+  font-weight: bold;
+`;
+
+const Loading = styled.div`
+  margin-top: 100px;
+`;
+const LoadingText = styled.h4`
+  font-size: 48px;
+  color: #dddddd;
 `;
 
 export default Root;

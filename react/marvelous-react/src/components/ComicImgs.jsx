@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import MiniCard from "./MiniCard";
+import { getSmallImageURL } from "../utils/getURL";
 
 export default function ComicImgs({ comic1, comic2, comic3 }) {
   const comics = [comic1, comic2, comic3];
@@ -11,7 +12,7 @@ export default function ComicImgs({ comic1, comic2, comic3 }) {
         return (
           <MiniCard
             key={comic.id}
-            imgUrl={`${comic.thumbnail.path}.jpg`}
+            imgUrl={getSmallImageURL(comic.thumbnail)}
             title={comic.title}
             style={`position: absolute; top: 0px; transform: rotateZ(${
               index * 17 + -10

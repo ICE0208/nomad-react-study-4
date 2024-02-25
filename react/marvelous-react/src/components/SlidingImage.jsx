@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import MiniCard from "./MiniCard";
+import { getSmallImageURL } from "../utils/getURL";
 
 export default function SlidingImage({ infos, title }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -54,11 +55,7 @@ export default function SlidingImage({ infos, title }) {
               />
             ) : (
               <MiniCard
-                imgUrl={
-                  infos[selectedIndex].thumbnail
-                    ? `${infos[selectedIndex].thumbnail?.path}.jpg`
-                    : "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
-                }
+                imgUrl={getSmallImageURL(infos[selectedIndex].thumbnail)}
                 title={infos[selectedIndex].title}
               />
             )}

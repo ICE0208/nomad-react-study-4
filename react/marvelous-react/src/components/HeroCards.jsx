@@ -3,6 +3,7 @@ import * as S from "../styles/herocards.styled";
 import { useEffect, useState } from "react";
 import { useNavigate, useMatch } from "react-router-dom";
 import useCardAnimation from "../animations/useCardAnimation";
+import { getBigImageURL } from "../utils/getURL";
 
 export default function HeroCards({ heros = [] }) {
   const [clickedId, setClickedId] = useState(null);
@@ -54,7 +55,7 @@ function HeroCard({ hero, clicked, setClickedId }) {
         }}
       >
         <S.CardOverlay ref={overlayRef} />
-        <S.CardImg $imgUrl={`${hero.thumbnail.path}.jpg`}>
+        <S.CardImg $imgUrl={getBigImageURL(hero.thumbnail)}>
           <S.CardText>{hero.name.split("(")[0].trim()}</S.CardText>
         </S.CardImg>
       </S.Card>

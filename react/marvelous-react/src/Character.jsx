@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import useDetailInfo from "./hooks/useDetailInfo";
 import Button from "./components/Button";
+import ComicImgs from "./components/ComicImgs";
 
 export default function Character() {
   const contentRef = useRef(null);
@@ -43,7 +44,22 @@ export default function Character() {
             handleClick={handleComicsButtonClick}
           />
         </ButtonArea>
-        <SomethingArea></SomethingArea>
+        <SomethingArea>
+          {comicsInfo && (
+            <>
+              <ComicImgs
+                comic1={comicsInfo[0]}
+                comic2={comicsInfo[1]}
+                comic3={comicsInfo[2]}
+              />
+              <ComicImgs
+                comic1={comicsInfo[3]}
+                comic2={comicsInfo[4]}
+                comic3={comicsInfo[5]}
+              />
+            </>
+          )}
+        </SomethingArea>
         {characterInfo && (
           <DescriptionArea>
             {<h1>{characterInfo.description}</h1>}
@@ -67,10 +83,10 @@ const Wrapper = styled.div`
 
 const Modal = styled.div`
   overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   opacity: 0;
   width: 1200px;
-  height: 760px;
+  height: 700px;
   transition: opacity 0.3s ease-in-out;
   padding: 40px;
   display: flex;
@@ -85,10 +101,14 @@ const ButtonArea = styled.div`
 `;
 const SomethingArea = styled.div`
   width: 100%;
-  flex-grow: 1;
+  height: 420px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 const DescriptionArea = styled.div`
   width: 100%;
   font-size: 18px;
   color: whitesmoke;
+  padding: 0 36px;
 `;

@@ -20,6 +20,7 @@ export const Card = styled.div`
   height: 420px;
   border-radius: 6px;
   cursor: pointer;
+  overflow: hidden;
 `;
 export const CardImg = styled.div`
   width: 100%;
@@ -50,7 +51,7 @@ export const CardText = styled.p`
 export const CardOverlay = styled.div`
   position: absolute;
   width: 290px;
-  height: 420px;
+  height: 100%;
   background: linear-gradient(
     105deg,
     transparent 40%,

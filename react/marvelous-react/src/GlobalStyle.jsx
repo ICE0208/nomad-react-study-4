@@ -52,7 +52,7 @@ table {
 
 // Custom
 body {
-    background-color: black;
+    background-color: #070707;
 	color: white;
 	-webkit-user-select:none;
 	-moz-user-select:none;

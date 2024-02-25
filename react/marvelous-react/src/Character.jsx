@@ -16,34 +16,39 @@ export default function Character() {
     }
   }, [contentRef]);
 
+  // Detail 페이지 내에서 사용될 버튼 클릭 핸들러 함수 정의
+  const handleCloseButtonClick = () => {
+    navigator("/");
+  };
+
+  const handleComicsButtonClick = () => {
+    const comicUrl = characterInfo.urls.find((e) => e.type === "comiclink");
+    if (comicUrl) {
+      window.open(comicUrl.url, "_blank");
+    } else {
+      window.alert("해당 url이 없습니다. :(");
+    }
+  };
+
   return (
     <Wrapper>
       <Modal ref={contentRef}>
         <ButtonArea>
           <Button
             text={"Close"}
-            handleClick={() => {
-              navigator("/");
-            }}
+            handleClick={handleCloseButtonClick}
           />
           <Button
             text={"Comics"}
-            handleClick={() => {
-              const comicUrl = characterInfo.urls.find(
-                (e) => e.type === "comiclink"
-              );
-              if (comicUrl) {
-                window.open(comicUrl.url, "_blank");
-              } else {
-                window.alert("해당 url이 없습니다. :(");
-              }
-            }}
+            handleClick={handleComicsButtonClick}
           />
         </ButtonArea>
         <SomethingArea></SomethingArea>
-        <DescriptionArea>
-          {characterInfo && <h1>{characterInfo.description}</h1>}
-        </DescriptionArea>
+        {characterInfo && (
+          <DescriptionArea>
+            {<h1>{characterInfo.description}</h1>}
+          </DescriptionArea>
+        )}
       </Modal>
     </Wrapper>
   );

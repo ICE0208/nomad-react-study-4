@@ -33,6 +33,13 @@ export default function Detail() {
     }
   };
 
+  useEffect(() => {
+    const moveRoot = () => navigator("/");
+
+    window.addEventListener("resize", moveRoot);
+    return () => window.removeEventListener("resize", moveRoot);
+  }, [navigator]);
+
   return (
     <Wrapper>
       <DropDown

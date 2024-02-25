@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import ComicCard from "./ComicCard";
+import MiniCard from "./MiniCard";
 
 export default function ComicImgs({ comic1, comic2, comic3 }) {
   const comics = [comic1, comic2, comic3];
@@ -9,7 +9,7 @@ export default function ComicImgs({ comic1, comic2, comic3 }) {
     <Wrapper>
       {comics.map((comic, index) => {
         return (
-          <ComicCard
+          <MiniCard
             key={comic.id}
             imgUrl={`${comic.thumbnail.path}.jpg`}
             title={comic.title}

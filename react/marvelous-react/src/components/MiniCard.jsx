@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
 
-export default function ComicCard({ imgUrl, title, style }) {
+export default function MiniCard({ imgUrl, title, style = "" }) {
   const cardRef = useRef(null);
   useEffect(() => {
     cardRef.current.style = style;
@@ -22,7 +22,7 @@ export default function ComicCard({ imgUrl, title, style }) {
   );
 }
 
-ComicCard.propTypes = {
+MiniCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   style: PropTypes.string,
@@ -42,7 +42,7 @@ export const Card = styled.div`
 export const CardImg = styled.div`
   width: 100%;
   height: 100%;
-
+  background-color: #9d9d9d;
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;
   background-position: center;

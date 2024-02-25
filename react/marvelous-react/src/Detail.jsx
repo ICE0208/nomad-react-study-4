@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useDetailInfo from "./hooks/useDetailInfo";
 import Button from "./components/Button";
 import ComicImgs from "./components/ComicImgs";
+import SlidingImage from "./components/SlidingImage";
 
 export default function Detail() {
   const contentRef = useRef(null);
@@ -65,11 +66,17 @@ export default function Detail() {
             </>
           )}
         </SomethingArea>
-        {characterInfo && (
+        <DescriptionArea>
+          <SlidingImage
+            title="COMICS"
+            infos={comicsInfo ?? []}
+          />
+        </DescriptionArea>
+        {/* {characterInfo && (
           <DescriptionArea>
             {<h1>{characterInfo.description}</h1>}
           </DescriptionArea>
-        )}
+        )} */}
       </Modal>
     </Wrapper>
   );
@@ -100,7 +107,7 @@ const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
   opacity: 0;
   width: 1200px;
-  height: 700px;
+  height: 760px;
   transition: opacity 0.3s ease-in-out;
   padding: 40px;
   display: flex;
@@ -117,7 +124,7 @@ const ButtonArea = styled.div`
 `;
 const SomethingArea = styled.div`
   width: 100%;
-  height: 420px;
+  height: 340px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,4 +134,5 @@ const DescriptionArea = styled.div`
   font-size: 18px;
   color: whitesmoke;
   padding: 0 36px;
+  flex-grow: 1;
 `;

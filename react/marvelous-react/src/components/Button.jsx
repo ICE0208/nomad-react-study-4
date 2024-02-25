@@ -10,8 +10,8 @@ export default function Button({ text, handleClick = () => {} }) {
 }
 
 const Wrapper = styled.div`
-  width: 180px;
-  height: 80px;
+  width: 140px;
+  height: 60px;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid white;
   color: white;
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   align-items: center;
   cursor: pointer;
   font-size: 22px;
+  font-weight: 500;
 `;
 
 Button.propTypes = {

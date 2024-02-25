@@ -33,6 +33,11 @@ export default function Detail() {
 
   return (
     <Wrapper>
+      <DropDown
+        onClick={() => {
+          navigator("/");
+        }}
+      />
       <Modal ref={contentRef}>
         <ButtonArea>
           <Button
@@ -70,6 +75,15 @@ export default function Detail() {
   );
 }
 
+const DropDown = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`;
+
 const Wrapper = styled.div`
   position: fixed;
   left: 0;
@@ -92,6 +106,8 @@ const Modal = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 16px;
+  border: 2px solid whitesmoke;
+  box-shadow: -4px 4px 7px 0px #bababa7d;
 `;
 
 const ButtonArea = styled.div`

@@ -17,7 +17,7 @@ export default function useCardAnimation(clicked) {
       const offsetX = e.clientX - rect.left;
       const offsetY = e.clientY - rect.top;
 
-      const rotateY = (40 / -200) * offsetX + 20;
+      const rotateY = (40 / -300) * offsetX + 20;
       const rotateX = (1 / 14) * offsetY - 15;
       card.style.transition = "transform 0.1s ease";
       card.style.transform = `perspective(700px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;

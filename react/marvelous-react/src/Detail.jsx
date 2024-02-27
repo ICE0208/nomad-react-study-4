@@ -42,7 +42,7 @@ export default function Detail() {
 
   return (
     <Wrapper>
-      <DropDown
+      <ModalBackground
         onClick={() => {
           navigator("/");
         }}
@@ -93,7 +93,7 @@ export default function Detail() {
   );
 }
 
-const DropDown = styled.div`
+const ModalBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;

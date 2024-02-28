@@ -22,10 +22,10 @@ function Root() {
       const results = json?.data?.results;
 
       // 썸네일 이미지가 없는 요소 제거
-      const filterdResults = results.filter(
+      const filteredResults = results.filter(
         (result) => !result.thumbnail.path.includes("image_not_available")
       );
-      setHeroList(filterdResults);
+      setHeroList(filteredResults);
     } catch (error) {
       console.log(error);
     }

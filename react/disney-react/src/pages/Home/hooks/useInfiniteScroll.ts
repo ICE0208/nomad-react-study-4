@@ -20,7 +20,7 @@ export default function useInfiniteScroll<T>({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (inView && !throttle && !isLoading) {
+    if (inView && !throttle && !isLoading && curPage < maxPage) {
       setIsLoading(true);
       setThrottle(true);
       const nextDataStart = curPage * perPage;
@@ -33,7 +33,16 @@ export default function useInfiniteScroll<T>({
         setThrottle(false);
       }, loadingTime);
     }
-  }, [inView, curPage, data, perPage, throttle, isLoading, loadingTime]);
+  }, [
+    inView,
+    curPage,
+    data,
+    perPage,
+    throttle,
+    isLoading,
+    loadingTime,
+    maxPage,
+  ]);
 
   useEffect(() => {
     setMaxPage(Math.ceil(data.length / perPage));

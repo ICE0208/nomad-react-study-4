@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
 import { CharacterCard, CharacterCardSkeleton } from "./components";
-import { useEffect } from "react";
 import { useInfiniteScroll } from "./hooks";
 
 const perPage = 16;
@@ -15,6 +14,7 @@ export default function Home() {
     observerRef,
     loadedData,
     isLoading: scrollLoading,
+    pageInfo: { curPage, maxPage },
   } = useInfiniteScroll({
     data: data?.slice(perPage) ?? [],
     perPage,
@@ -70,7 +70,7 @@ export default function Home() {
         {content}
       </div>
       {/* Scroll Observer */}
-      {data && !scrollLoading && (
+      {data && !scrollLoading && curPage < maxPage && (
         <div ref={observerRef} className="mt-32 h-4"></div>
       )}
     </>

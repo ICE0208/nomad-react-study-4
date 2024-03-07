@@ -1,11 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
 import { CharacterCard, CharacterCardSkeleton } from "./components";
+import { useEffect } from "react";
+import { useInfiniteScroll } from "./hooks";
+
+const perPage = 16;
 
 export default function Home() {
   const { data, isLoading, isError, error } = useQuery({
     queryFn: getCharacters,
     queryKey: ["characters"],
+  });
+  const {
+    observerRef,
+    loadedData,
+    isLoading: scrollLoading,
+  } = useInfiniteScroll({
+    data: data?.slice(perPage) ?? [],
+    perPage,
   });
 
   let content = <h1>?</h1>;
@@ -13,7 +25,7 @@ export default function Home() {
   if (isLoading) {
     content = (
       <>
-        {Array.from({ length: 12 }, (_, i) => i).map((_, i) => (
+        {Array.from({ length: perPage }, (_, i) => i).map((_, i) => (
           <CharacterCardSkeleton key={`skeleton-${i}`} />
         ))}
       </>
@@ -27,20 +39,40 @@ export default function Home() {
   if (data) {
     content = (
       <>
-        {data.slice(2, 50).map((character) => (
+        {data.slice(2, 16).map((character) => (
           <CharacterCard
             key={character.id}
             imgUrl={character.imageUrl}
             name={character.name}
           />
         ))}
+        {loadedData.map((character) => (
+          <CharacterCard
+            key={`loaded-${character.id}`}
+            imgUrl={character.imageUrl}
+            name={character.name}
+          />
+        ))}
+        {scrollLoading && (
+          <>
+            {Array.from({ length: perPage }, (_, i) => i).map((_, i) => (
+              <CharacterCardSkeleton key={`skeleton-${i}`} />
+            ))}
+          </>
+        )}
       </>
     );
   }
 
   return (
-    <div className="mb-5 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-items-center gap-y-6 p-6">
-      {content}
-    </div>
+    <>
+      <div className="mb-5 grid min-h-screen grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-items-center gap-y-6 p-6">
+        {content}
+      </div>
+      {/* Scroll Observer */}
+      {data && !scrollLoading && (
+        <div ref={observerRef} className="mt-10 h-4"></div>
+      )}
+    </>
   );
 }

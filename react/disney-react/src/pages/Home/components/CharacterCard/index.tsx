@@ -36,7 +36,7 @@ export default function CharacterCard({ imgUrl, name }: CharacterCardProps) {
           ></div>
         )}
         {/* Text */}
-        <div className="w-full">
+        <div className="w-full truncate text-white">
           <span className="text-2xl font-semibold text-white drop-shadow-xl">
             {name}
           </span>

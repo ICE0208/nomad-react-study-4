@@ -66,12 +66,12 @@ export default function Home() {
 
   return (
     <>
-      <div className="mb-5 grid min-h-screen grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-items-center gap-y-6 p-6">
+      <div className="mb-5 grid min-h-screen grid-cols-[repeat(auto-fill,minmax(360px,1fr))] justify-items-center gap-x-10 gap-y-6 p-6 sm:flex sm:flex-col sm:items-center">
         {content}
       </div>
       {/* Scroll Observer */}
       {data && !scrollLoading && (
-        <div ref={observerRef} className="mt-10 h-4"></div>
+        <div ref={observerRef} className="mt-32 h-4"></div>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
-import { CharacterCard, CharacterCardSkeleton } from "./components";
+import { CharacterCard, CharacterCardSkeleton, TopButton } from "./components";
 import { useInfiniteScroll } from "./hooks";
 
 const perPage = 16;
@@ -73,6 +73,8 @@ export default function Home() {
       {data && !scrollLoading && curPage < maxPage && (
         <div ref={observerRef} className="mt-32 h-4"></div>
       )}
+      {/* Top Button */}
+      <TopButton />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
 
-export default function App() {
+export default function Home() {
   const { data, isLoading, isError, error } = useQuery({
     queryFn: getCharacters,
     queryKey: ["characters"],

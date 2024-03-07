@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
-import { CharacterCard } from "./components";
+import { CharacterCard, CharacterCardSkeleton } from "./components";
 
 export default function Home() {
   const { data, isLoading, isError, error } = useQuery({
@@ -11,7 +11,13 @@ export default function Home() {
   let content = <h1>?</h1>;
 
   if (isLoading) {
-    content = <h1>Loading..</h1>;
+    content = (
+      <>
+        {Array.from({ length: 12 }, (_, i) => i).map((_, i) => (
+          <CharacterCardSkeleton key={`skeleton-${i}`} />
+        ))}
+      </>
+    );
   }
 
   if (isError) {
@@ -21,7 +27,7 @@ export default function Home() {
   if (data) {
     content = (
       <>
-        {data.slice(2, 30).map((character) => (
+        {data.slice(2, 50).map((character) => (
           <CharacterCard
             key={character.id}
             imgUrl={character.imageUrl}

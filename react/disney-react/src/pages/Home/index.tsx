@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
+import { CharacterCard } from "./components";
 
 export default function Home() {
   const { data, isLoading, isError, error } = useQuery({
@@ -19,13 +20,21 @@ export default function Home() {
 
   if (data) {
     content = (
-      <ul>
-        {data.map((character) => (
-          <li key={character.id}>{character.name}</li>
+      <>
+        {data.slice(2, 30).map((character) => (
+          <CharacterCard
+            key={character.id}
+            imgUrl={character.imageUrl}
+            name={character.name}
+          />
         ))}
-      </ul>
+      </>
     );
   }
 
-  return <div className="flex justify-center items-center">{content}</div>;
+  return (
+    <div className="mb-5 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-items-center gap-y-6 p-6">
+      {content}
+    </div>
+  );
 }

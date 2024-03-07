@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <header>
-      <nav className="relative flex h-16 items-center justify-between bg-rose-400 px-4 text-white sm:justify-center">
+      <nav className="relative flex h-16 items-center justify-between bg-gradient-to-r from-violet-800 to-indigo-800 px-4 text-white sm:justify-center ">
         <div className="flex items-center text-3xl font-bold">
           <Link to="/" className="mr-1">
             <svg
@@ -68,7 +68,7 @@ export default function Navbar() {
           )}
         </div>
         <div className="flex items-center space-x-2 sm:hidden">
-          <input className="h-8 w-64 rounded-lg px-4 text-black focus:outline-none focus:ring-2 focus:ring-red-300" />
+          <input className="h-8 w-64 rounded-lg px-4 text-black focus:outline-none focus:ring-2 focus:ring-[#6640e9]" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

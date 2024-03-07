@@ -16,6 +16,7 @@ export default function useInfiniteScroll<T>({
   const [maxPage, setMaxPage] = useState(0);
   const [curPage, setCurPage] = useState(0);
   const [loadedData, setLoadedData] = useState<T[]>([]);
+  const [willLoadData, setWillLoadData] = useState<T[]>([]);
   const [throttle, setThrottle] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,12 +26,14 @@ export default function useInfiniteScroll<T>({
       setThrottle(true);
       const nextDataStart = curPage * perPage;
       const nextData = data.slice(nextDataStart, nextDataStart + perPage);
+      setWillLoadData(nextData);
       setCurPage((prevPage) => prevPage + 1);
 
       setTimeout(() => {
         setIsLoading(false);
         setLoadedData((prevLoadedData) => [...prevLoadedData, ...nextData]);
         setThrottle(false);
+        setWillLoadData([]);
       }, loadingTime);
     }
   }, [
@@ -48,5 +51,11 @@ export default function useInfiniteScroll<T>({
     setMaxPage(Math.ceil(data.length / perPage));
   }, [data, perPage]);
 
-  return { observerRef, loadedData, isLoading, pageInfo: { curPage, maxPage } };
+  return {
+    observerRef,
+    loadedData,
+    willLoadData,
+    isLoading,
+    pageInfo: { curPage, maxPage },
+  };
 }

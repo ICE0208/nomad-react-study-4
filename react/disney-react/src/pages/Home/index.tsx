@@ -13,6 +13,7 @@ export default function Home() {
   const {
     observerRef,
     loadedData,
+    willLoadData,
     isLoading: scrollLoading,
     pageInfo: { curPage, maxPage },
   } = useInfiniteScroll({
@@ -55,6 +56,11 @@ export default function Home() {
         ))}
         {scrollLoading && (
           <>
+            {/* 스켈레톤 컴포넌트를 보여주는 동안 이미지를 미리 로드시킵니다. */}
+            {willLoadData.map((character) => {
+              const img = new Image();
+              img.src = character.imageUrl;
+            })}
             {Array.from({ length: perPage }, (_, i) => i).map((_, i) => (
               <CharacterCardSkeleton key={`skeleton-${i}`} />
             ))}

@@ -9,5 +9,9 @@ export default async function getCharacters() {
 
   const result: Character[] = await response.json();
 
-  return result;
+  const filteredResult = result.filter((character) => {
+    return character.imageUrl && !character.imageUrl.includes(".gif");
+  });
+
+  return filteredResult;
 }

@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <header>
+    <header className="fixed top-0 z-50 w-full shadow-2xl">
       <nav className="relative flex h-16 items-center justify-between bg-gradient-to-r from-violet-800 to-indigo-800 px-4 text-white sm:justify-center ">
         <div className="flex items-center text-3xl font-bold">
           <Link to="/" className="mr-1">

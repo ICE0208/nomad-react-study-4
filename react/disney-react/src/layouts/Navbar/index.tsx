@@ -36,6 +36,10 @@ export default function Navbar() {
     const value = event.currentTarget.value;
     const replacedValue = value.replace("\\", "");
     setSearchText(replacedValue);
+
+    if (location.pathname !== "/") {
+      navigate("/", { replace: true });
+    }
   };
 
   return (

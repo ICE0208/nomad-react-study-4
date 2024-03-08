@@ -42,18 +42,10 @@ export default function Home() {
     content = (
       <>
         {data.slice(0, perPage).map((character) => (
-          <CharacterCard
-            key={character.id}
-            imgUrl={character.imageUrl}
-            name={character.name}
-          />
+          <CharacterCard key={character.id} {...character} />
         ))}
         {loadedData.map((character) => (
-          <CharacterCard
-            key={`loaded-${character.id}`}
-            imgUrl={character.imageUrl}
-            name={character.name}
-          />
+          <CharacterCard key={`loaded-${character.id}`} {...character} />
         ))}
         {scrollLoading && (
           <>

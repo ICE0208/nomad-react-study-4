@@ -1,4 +1,6 @@
+import { searchTextState } from "@/atom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
 const getTitle = (pathname: string) => {
   const routePatterns = [
@@ -17,6 +19,7 @@ const getTitle = (pathname: string) => {
 export default function Navbar() {
   const location = useLocation();
   const title = getTitle(location.pathname);
+  const [searchText, setSearchText] = useRecoilState(searchTextState);
 
   const navigate = useNavigate();
 
@@ -27,6 +30,10 @@ export default function Navbar() {
     } else {
       navigate("/", { replace: true }); // 루트 페이지로 이동
     }
+  };
+
+  const handleSearchInput = (event: React.FormEvent<HTMLInputElement>) => {
+    setSearchText(event.currentTarget.value);
   };
 
   return (
@@ -68,7 +75,11 @@ export default function Navbar() {
           )}
         </div>
         <div className="flex items-center space-x-2 sm:hidden">
-          <input className="h-8 w-64 rounded-lg px-4 text-black focus:outline-none focus:ring-2 focus:ring-[#6640e9]" />
+          <input
+            value={searchText}
+            onInput={handleSearchInput}
+            className="h-8 w-64 rounded-lg px-4 text-black focus:outline-none focus:ring-2 focus:ring-[#6640e9]"
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

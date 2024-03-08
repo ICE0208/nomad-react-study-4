@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 interface useInfiniteScrollProps<T> {
@@ -19,9 +19,13 @@ export default function useInfiniteScroll<T>({
   const [willLoadData, setWillLoadData] = useState<T[]>([]);
   const [throttle, setThrottle] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (inView && !throttle && !isLoading && curPage < maxPage) {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
       setIsLoading(true);
       setThrottle(true);
       const nextDataStart = curPage * perPage;
@@ -29,7 +33,7 @@ export default function useInfiniteScroll<T>({
       setWillLoadData(nextData);
       setCurPage((prevPage) => prevPage + 1);
 
-      setTimeout(() => {
+      timeoutIdRef.current = setTimeout(() => {
         setIsLoading(false);
         setLoadedData((prevLoadedData) => [...prevLoadedData, ...nextData]);
         setThrottle(false);
@@ -48,6 +52,14 @@ export default function useInfiniteScroll<T>({
   ]);
 
   useEffect(() => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
+    setCurPage(0);
+    setIsLoading(false);
+    setLoadedData([]);
+    setThrottle(false);
+    setWillLoadData([]);
     setMaxPage(Math.ceil(data.length / perPage));
   }, [data, perPage]);
 

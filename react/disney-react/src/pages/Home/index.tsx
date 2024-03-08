@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
-import { CharacterCard, CharacterCardSkeleton, TopButton } from "./components";
+import {
+  CharacterCard,
+  CharacterCardSkeleton,
+  Observer,
+  TopButton,
+} from "./components";
 import { useInfiniteScroll } from "./hooks";
 import { useEffect } from "react";
 
@@ -75,9 +80,10 @@ export default function Home() {
         {content}
       </div>
       {/* Scroll Observer */}
-      {data && !scrollLoading && curPage < maxPage && (
-        <div ref={observerRef} className="mt-32 h-4"></div>
-      )}
+      <Observer
+        ref={observerRef}
+        visible={data && !scrollLoading && curPage < maxPage}
+      />
       {/* Top Button */}
       <TopButton />
     </div>

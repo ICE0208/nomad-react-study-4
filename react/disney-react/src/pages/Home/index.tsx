@@ -89,9 +89,11 @@ export default function Home() {
               const img = new Image();
               img.src = character.imageUrl;
             })}
-            {Array.from({ length: perPage }, (_, i) => i).map((_, i) => (
-              <CharacterCardSkeleton key={`skeleton-${i}`} />
-            ))}
+            {Array.from({ length: willLoadData.length }, (_, i) => i).map(
+              (_, i) => (
+                <CharacterCardSkeleton key={`skeleton-${i}`} />
+              ),
+            )}
           </>
         )}
       </>

@@ -33,7 +33,9 @@ export default function Navbar() {
   };
 
   const handleSearchInput = (event: React.FormEvent<HTMLInputElement>) => {
-    setSearchText(event.currentTarget.value);
+    const value = event.currentTarget.value;
+    const replacedValue = value.replace("\\", "");
+    setSearchText(replacedValue);
   };
 
   return (

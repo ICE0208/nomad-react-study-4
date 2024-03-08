@@ -41,7 +41,7 @@ export default function Home() {
   if (data) {
     content = (
       <>
-        {data.slice(2, 16).map((character) => (
+        {data.slice(0, perPage).map((character) => (
           <CharacterCard
             key={character.id}
             imgUrl={character.imageUrl}

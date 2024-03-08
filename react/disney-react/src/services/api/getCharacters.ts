@@ -13,5 +13,5 @@ export default async function getCharacters() {
     return character.imageUrl && !character.imageUrl.includes(".gif");
   });
 
-  return filteredResult;
+  return filteredResult.slice(2);
 }

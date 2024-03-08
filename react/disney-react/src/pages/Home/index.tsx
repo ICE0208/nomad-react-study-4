@@ -76,7 +76,7 @@ export default function Home() {
 
   return (
     <div className="flex w-full flex-col items-center">
-      <div className="mb-5 grid min-h-screen w-full max-w-[1800px] grid-cols-[repeat(auto-fill,minmax(360px,1fr))] justify-items-center gap-x-10 gap-y-6 p-6 sm:flex sm:flex-col sm:items-center">
+      <div className="mb-12 grid min-h-screen w-full max-w-[1800px] grid-cols-[repeat(auto-fill,minmax(360px,1fr))] justify-items-center gap-x-10 gap-y-6 p-6 sm:flex sm:flex-col sm:items-center">
         {content}
       </div>
       {/* Scroll Observer */}

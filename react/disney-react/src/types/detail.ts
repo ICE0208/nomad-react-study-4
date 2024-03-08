@@ -1,7 +1,6 @@
-export interface Detail {
-  id: number;
+import { Character } from ".";
+
+export interface Detail extends Character {
   films: string[];
-  name: string;
-  imageUrl: string;
   sourceUrl: string;
 }

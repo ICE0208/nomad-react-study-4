@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import DetailCard from "./components/DetailCard";
 import { useEffect } from "react";
+import { DetailCardSkeleton } from "./components";
 
 export default function Detail() {
   const { id } = useParams() as { id: string };
@@ -16,11 +17,7 @@ export default function Detail() {
   let content;
 
   if (isLoading) {
-    content = (
-      <>
-        <span>Loading</span>
-      </>
-    );
+    content = <DetailCardSkeleton />;
   }
 
   if (isError) {

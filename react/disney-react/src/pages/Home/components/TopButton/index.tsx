@@ -4,6 +4,8 @@ export default function TopButton() {
   const [showButton, setShowButton] = useState(false);
 
   const scrollToTop = () => {
+    if (!showButton) return;
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -27,8 +29,12 @@ export default function TopButton() {
   return (
     <>
       <div
-        style={showButton ? {} : { opacity: 0 }}
-        className="fixed bottom-6 right-6 flex h-16 w-16 cursor-pointer items-center justify-center rounded-3xl bg-[#04030578] text-white shadow-2xl shadow-black transition-opacity ease-in-out"
+        style={
+          showButton
+            ? { cursor: "pointer" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+        className="fixed bottom-6 right-6 flex h-16 w-16 items-center justify-center rounded-3xl bg-[#04030578] text-white shadow-2xl shadow-black transition-opacity ease-in-out"
         onClick={scrollToTop}
       >
         <span className="font-bold">TOP</span>

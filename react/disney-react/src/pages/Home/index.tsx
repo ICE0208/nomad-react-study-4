@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import getCharacters from "@/services/api/getCharacters";
 import { CharacterCard, CharacterCardSkeleton, TopButton } from "./components";
 import { useInfiniteScroll } from "./hooks";
+import { useEffect } from "react";
 
 const perPage = 16;
 
@@ -69,6 +70,12 @@ export default function Home() {
       </>
     );
   }
+
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
   return (
     <>

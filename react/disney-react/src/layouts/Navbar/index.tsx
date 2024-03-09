@@ -1,6 +1,7 @@
 import { searchTextState } from "@/atom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { SearchClearBtn } from "../components";
 
 const getTitle = (pathname: string) => {
   const routePatterns = [
@@ -81,11 +82,16 @@ export default function Navbar() {
           )}
         </div>
         <div className="flex items-center space-x-2 sm:hidden">
-          <input
-            value={searchText}
-            onInput={handleSearchInput}
-            className="h-8 w-64 rounded-lg px-4 text-black focus:outline-none focus:ring-2 focus:ring-[#6640e9]"
-          />
+          <div className="relative">
+            <input
+              value={searchText}
+              onInput={handleSearchInput}
+              className="h-8 w-64 rounded-lg pl-4 pr-8 text-black focus:outline-none focus:ring-2 focus:ring-[#6640e9]"
+            />
+            <div className="absolute right-2 top-1/2 h-fit w-fit -translate-y-1/2">
+              <SearchClearBtn />
+            </div>
+          </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

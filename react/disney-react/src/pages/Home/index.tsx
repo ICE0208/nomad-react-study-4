@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { searchTextState } from "@/atom";
 import { Character } from "@/types";
+import styled from "styled-components";
 
 const perPage = 16;
 
@@ -107,7 +108,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex w-full flex-col items-center">
+    <HomeWrapper>
       <div className="mb-12 grid w-full max-w-[1800px] grid-cols-[repeat(auto-fill,minmax(360px,1fr))] justify-items-center gap-x-10 gap-y-6 p-6 sm:flex sm:flex-col sm:items-center">
         {content}
       </div>
@@ -118,6 +119,14 @@ export default function Home() {
       />
       {/* Top Button */}
       <TopButton />
-    </div>
+    </HomeWrapper>
   );
 }
+
+// 과제 필수 조건이었던 스타일 컴포넌트 사용
+const HomeWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+`;

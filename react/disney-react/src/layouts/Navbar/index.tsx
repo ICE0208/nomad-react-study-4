@@ -35,7 +35,7 @@ export default function Navbar() {
 
   const handleSearchInput = (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
-    const replacedValue = value.replace(/[^a-zA-Z]/g, "");
+    const replacedValue = value.replace(/[\\^*()]+/g, "");
     setSearchText(replacedValue);
 
     if (location.pathname !== "/") {

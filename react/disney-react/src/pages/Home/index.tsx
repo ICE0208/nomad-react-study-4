@@ -35,7 +35,7 @@ export default function Home() {
     willLoadData,
     isLoading: scrollLoading,
     pageInfo: { curPage, maxPage },
-  } = useInfiniteScroll({
+  } = useInfiniteScroll<Character>({
     data: searchTextValue ? sliceFilteredData : sliceData,
     perPage,
   });

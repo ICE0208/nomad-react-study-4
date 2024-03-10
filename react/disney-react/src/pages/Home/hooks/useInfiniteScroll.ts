@@ -13,21 +13,23 @@ export default function useInfiniteScroll<T>({
   loadingTime = 1000,
 }: useInfiniteScrollProps<T>) {
   const { ref: observerRef, inView } = useInView();
-  const [maxPage, setMaxPage] = useState(0);
   const [curPage, setCurPage] = useState(0);
+
   const [loadedData, setLoadedData] = useState<T[]>([]);
   const [willLoadData, setWillLoadData] = useState<T[]>([]);
-  const [throttle, setThrottle] = useState(false);
+
+  const throttle = useRef(false);
   const [isLoading, setIsLoading] = useState(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (inView && !throttle && !isLoading && curPage < maxPage) {
+    const maxPage = Math.ceil(data.length / perPage);
+    if (inView && !throttle.current && curPage < maxPage) {
       if (timeoutIdRef.current) {
         clearTimeout(timeoutIdRef.current);
       }
       setIsLoading(true);
-      setThrottle(true);
+      throttle.current = true;
       const nextDataStart = curPage * perPage;
       const nextData = data.slice(nextDataStart, nextDataStart + perPage);
       setWillLoadData(nextData);
@@ -36,20 +38,11 @@ export default function useInfiniteScroll<T>({
       timeoutIdRef.current = setTimeout(() => {
         setIsLoading(false);
         setLoadedData((prevLoadedData) => [...prevLoadedData, ...nextData]);
-        setThrottle(false);
+        throttle.current = false;
         setWillLoadData([]);
       }, loadingTime);
     }
-  }, [
-    inView,
-    curPage,
-    data,
-    perPage,
-    throttle,
-    isLoading,
-    loadingTime,
-    maxPage,
-  ]);
+  }, [inView, curPage, data, perPage, loadingTime]);
 
   useEffect(() => {
     if (timeoutIdRef.current) {
@@ -58,9 +51,8 @@ export default function useInfiniteScroll<T>({
     setCurPage(0);
     setIsLoading(false);
     setLoadedData([]);
-    setThrottle(false);
+    throttle.current = false;
     setWillLoadData([]);
-    setMaxPage(Math.ceil(data.length / perPage));
   }, [data, perPage]);
 
   return {
@@ -68,6 +60,6 @@ export default function useInfiniteScroll<T>({
     loadedData,
     willLoadData,
     isLoading,
-    pageInfo: { curPage, maxPage },
+    pageInfo: { curPage, maxPage: Math.ceil(data.length / perPage) },
   };
 }

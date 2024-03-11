@@ -1,6 +1,6 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { 데이터Atom } from "./atoms";
+import { I데이터, 데이터Atom } from "./atoms";
 import { useMemo } from "react";
 import { Item, ItemRenderer } from "./components";
 import { ItemType } from "./components/Item";
@@ -23,15 +23,14 @@ export default function App() {
     setError,
     reset,
   } = useForm<I폼>();
-  const 제출했을때 = (data: FieldValues) => {
-    const { 나라입력: newValue } = data;
+
+  const 제출했을때 = (제출된데이터: FieldValues) => {
+    const { 나라입력: newValue } = 제출된데이터;
 
     // 데이터 중복 검사
-    for (const each데이터 of Object.values(데이터)) {
-      if ((each데이터 as string[]).includes(newValue)) {
-        setError("나라입력", { type: "custom", message: "Duplicated :(" });
-        return;
-      }
+    if (isDuplicated(newValue, 데이터)) {
+      setError("나라입력", { type: "custom", message: "Duplicated :(" });
+      return;
     }
 
     set데이터((prev데이터) => ({
@@ -77,3 +76,14 @@ export default function App() {
     </main>
   );
 }
+
+/** newValue가 data의 모든 배열의 값 중 중복이 발견되면 true를 반환합니다. */
+const isDuplicated = (newValue: string, data: I데이터) => {
+  // 데이터 중복 검사
+  for (const each데이터 of Object.values(data)) {
+    if ((each데이터 as string[]).includes(newValue)) {
+      return true;
+    }
+  }
+  return false;
+};

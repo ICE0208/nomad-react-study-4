@@ -2,7 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { 데이터Atom } from "./atoms";
 import { useMemo } from "react";
-import { Item } from "./components";
+import { Item, ItemRenderer } from "./components";
 import { ItemType } from "./components/Item";
 
 interface I폼 {
@@ -58,37 +58,22 @@ export default function App() {
         </form>
       </div>
       {/* 가고싶은 나라 Area */}
-      {가고싶은.map((data) => {
-        return (
-          <Item
-            key={data}
-            text={data}
-            type={ItemType.가고싶은}
-          />
-        );
-      })}
-      <h2>가본 나라</h2>
+      <ItemRenderer
+        itemList={가고싶은}
+        itemType={ItemType.가고싶은}
+      />
       {/* 가본 나라 Area */}
-      {가본.map((data) => {
-        return (
-          <Item
-            key={data}
-            text={data}
-            type={ItemType.가본}
-          />
-        );
-      })}
-      <h2>좋아하는 나라</h2>
+      <h2>가본 나라</h2>
+      <ItemRenderer
+        itemList={가본}
+        itemType={ItemType.가본}
+      />
       {/* 좋아하는 나라 Area */}
-      {좋아하는.map((data) => {
-        return (
-          <Item
-            key={data}
-            text={data}
-            type={ItemType.좋아하는}
-          />
-        );
-      })}
+      <h2>좋아하는 나라</h2>
+      <ItemRenderer
+        itemList={좋아하는}
+        itemType={ItemType.좋아하는}
+      />
     </main>
   );
 }

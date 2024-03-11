@@ -4,6 +4,7 @@ import { I데이터, 데이터Atom } from "./atoms";
 import { useMemo } from "react";
 import { Item, ItemRenderer } from "./components";
 import { ItemType } from "./components/Item";
+import { ErrorTextSpan } from "./App.styles";
 
 interface I폼 {
   나라입력: string;
@@ -29,7 +30,7 @@ export default function App() {
 
     // 데이터 중복 검사
     if (isDuplicated(newValue, 데이터)) {
-      setError("나라입력", { type: "custom", message: "Duplicated :(" });
+      setError("나라입력", { type: "custom", message: "👀 Duplicated!" });
       return;
     }
 
@@ -53,7 +54,9 @@ export default function App() {
             type="submit"
             value="가자!"
           />
-          {errors.나라입력 && <div>{errors.나라입력.message}</div>}
+          <ErrorTextSpan>
+            {errors.나라입력 && <div>{errors.나라입력.message}</div>}
+          </ErrorTextSpan>
         </form>
       </div>
       {/* 가고싶은 나라 Area */}

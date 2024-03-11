@@ -4,7 +4,7 @@ import { I데이터, 데이터Atom } from "./atoms";
 import { useMemo } from "react";
 import { Item, ItemRenderer } from "./components";
 import { ItemType } from "./components/Item";
-import { ErrorTextSpan } from "./App.styles";
+import { ErrorTextDiv } from "./App.styles";
 
 interface I폼 {
   나라입력: string;
@@ -43,9 +43,13 @@ export default function App() {
 
   return (
     <main>
-      <h2>내가 가고싶은 나라들</h2>
+      {/* Form Area */}
       <div>
-        <form onSubmit={handleSubmit(제출했을때)}>
+        <h2>가고 싶은 나라를 입력하세요.</h2>
+        <form
+          onSubmit={handleSubmit(제출했을때)}
+          style={{ display: "flex" }}
+        >
           <input
             placeholder="여기에 나라를 입력"
             {...register("나라입력", { required: "👀 Required!" })}
@@ -54,24 +58,28 @@ export default function App() {
             type="submit"
             value="가자!"
           />
-          <ErrorTextSpan>
-            {errors.나라입력 && <div>{errors.나라입력.message}</div>}
-          </ErrorTextSpan>
         </form>
+        <ErrorTextDiv>
+          {errors.나라입력 && <div>{errors.나라입력.message}</div>}
+        </ErrorTextDiv>
       </div>
+      <hr />
       {/* 가고싶은 나라 Area */}
+      <h3>내가 가고싶은 나라들</h3>
       <ItemRenderer
         itemList={가고싶은}
         itemType={ItemType.가고싶은}
       />
+      <hr />
       {/* 가본 나라 Area */}
-      <h2>가본 나라</h2>
+      <h3>가본 나라</h3>
       <ItemRenderer
         itemList={가본}
         itemType={ItemType.가본}
       />
+      <hr />
       {/* 좋아하는 나라 Area */}
-      <h2>좋아하는 나라</h2>
+      <h3>좋아하는 나라</h3>
       <ItemRenderer
         itemList={좋아하는}
         itemType={ItemType.좋아하는}

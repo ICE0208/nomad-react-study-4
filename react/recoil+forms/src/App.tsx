@@ -1,4 +1,4 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { I데이터, 데이터Atom } from "./atoms";
 import { useCallback, useMemo } from "react";
@@ -25,9 +25,10 @@ export default function App() {
     reset,
   } = useForm<I폼>();
 
-  const 제출했을때 = useCallback(
-    (제출된데이터: FieldValues) => {
-      const { 나라입력: newValue } = 제출된데이터;
+  const 제출했을때: SubmitHandler<I폼> = useCallback(
+    (제출된데이터) => {
+      // newValue에서 양쪽 공백을 제거
+      const newValue = 제출된데이터.나라입력.trim();
 
       // 데이터 중복 검사
       if (isDuplicated(newValue, 데이터)) {

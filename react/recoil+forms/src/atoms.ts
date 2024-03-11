@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-interface I데이터 {
+export interface I데이터 {
   가고싶은: string[];
   가본: string[];
   좋아하는: string[];

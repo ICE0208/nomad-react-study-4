@@ -30,6 +30,12 @@ export default function App() {
       // newValue에서 양쪽 공백을 제거
       const newValue = 제출된데이터.나라입력.trim();
 
+      // 데이터 길이 검사
+      if (newValue.length === 0) {
+        setError("나라입력", { type: "custom", message: "👀 Required!" });
+        return;
+      }
+
       // 데이터 중복 검사
       if (isDuplicated(newValue, 데이터)) {
         setError("나라입력", { type: "custom", message: "👀 Duplicated!" });

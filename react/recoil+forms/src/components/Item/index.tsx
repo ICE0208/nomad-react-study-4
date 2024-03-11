@@ -13,13 +13,15 @@ interface ItemProps {
 }
 
 export default function ItemComponent({ text, type }: ItemProps) {
-  const { handleFirstBtn } = useHandleItemBtn(type, text);
+  const { handleFirstBtn, handleSecondBtn } = useHandleItemBtn(type, text);
 
   return (
     <div>
       <span>{text}</span>
       <button onClick={handleFirstBtn}>{getFirstBtnText(type)}</button>
-      {type !== ItemType.좋아하는 && <button>{getSecondBtnText(type)}</button>}
+      {type !== ItemType.좋아하는 && (
+        <button onClick={handleSecondBtn}>{getSecondBtnText(type)}</button>
+      )}
     </div>
   );
 }

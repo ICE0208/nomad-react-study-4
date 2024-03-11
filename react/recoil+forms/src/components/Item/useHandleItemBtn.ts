@@ -28,6 +28,15 @@ export default function useHandleItemBtn(type: ItemType, itemText: string) {
     [itemText, 데이터]
   );
 
+  const handleDeleteData = useCallback(() => {
+    set데이터((prev데이터) => {
+      return {
+        ...prev데이터,
+        [type]: prev데이터[type].filter((value) => value !== itemText),
+      };
+    });
+  }, []);
+
   const handleFirstBtn = useCallback(() => {
     switch (type) {
       case ItemType.가고싶은:
@@ -44,5 +53,21 @@ export default function useHandleItemBtn(type: ItemType, itemText: string) {
     }
   }, [type, 데이터]);
 
-  return { handleFirstBtn };
+  const handleSecondBtn = useCallback(() => {
+    switch (type) {
+      case ItemType.가고싶은:
+        handleDeleteData();
+        break;
+      case ItemType.가본:
+        handleUpdateData(ItemType.가본, ItemType.가고싶은);
+        break;
+      case ItemType.좋아하는:
+        // 좋아하는의 두 번째 버튼은 존재하지 않습니다.
+        break;
+      default:
+        console.error("Error on useCallback of handleFirstBtn");
+    }
+  }, [type, 데이터]);
+
+  return { handleFirstBtn, handleSecondBtn };
 }

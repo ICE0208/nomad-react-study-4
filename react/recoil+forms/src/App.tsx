@@ -1,7 +1,7 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { I데이터, 데이터Atom } from "./atoms";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Item, ItemRenderer } from "./components";
 import { ItemType } from "./components/Item";
 import { ErrorTextDiv } from "./App.styles";
@@ -25,21 +25,24 @@ export default function App() {
     reset,
   } = useForm<I폼>();
 
-  const 제출했을때 = (제출된데이터: FieldValues) => {
-    const { 나라입력: newValue } = 제출된데이터;
+  const 제출했을때 = useCallback(
+    (제출된데이터: FieldValues) => {
+      const { 나라입력: newValue } = 제출된데이터;
 
-    // 데이터 중복 검사
-    if (isDuplicated(newValue, 데이터)) {
-      setError("나라입력", { type: "custom", message: "👀 Duplicated!" });
-      return;
-    }
+      // 데이터 중복 검사
+      if (isDuplicated(newValue, 데이터)) {
+        setError("나라입력", { type: "custom", message: "👀 Duplicated!" });
+        return;
+      }
 
-    set데이터((prev데이터) => ({
-      ...prev데이터,
-      가고싶은: [...prev데이터.가고싶은, newValue],
-    }));
-    reset();
-  };
+      set데이터((prev데이터) => ({
+        ...prev데이터,
+        가고싶은: [...prev데이터.가고싶은, newValue],
+      }));
+      reset();
+    },
+    [데이터]
+  );
 
   return (
     <main>

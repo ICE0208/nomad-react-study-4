@@ -3,6 +3,9 @@ import { ItemType } from ".";
 import { useRecoilState } from "recoil";
 import { I데이터, 데이터Atom } from "../../atoms";
 
+/** 아이템의 첫번째 버튼과 두번째 버튼을 핸들링하는 함수 2개를 얻을 수 있습니다.  
+(`좋아하는` 타입의 두번째 버튼을 핸들링하는 함수는 아무런 동작을 하지 않습니다.)
+*/
 export default function useHandleItemBtn(type: ItemType, itemText: string) {
   const [데이터, set데이터] = useRecoilState(데이터Atom);
 

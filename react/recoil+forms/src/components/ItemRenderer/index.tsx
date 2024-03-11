@@ -6,6 +6,7 @@ interface ItemRendererProps {
   itemType: ItemType;
 }
 
+/** 특정 타입의 데이터 배열을 받아서 `spread` 해줍니다. */
 export default function ItemRenderer({
   itemList,
   itemType,

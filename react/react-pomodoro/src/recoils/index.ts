@@ -1,2 +1,2 @@
-export { accumulatedTimeState } from "./atoms";
+export { accumulatedTimeState, roundGoalState } from "./atoms";
 export { formattedRemainingMinSecState, remainingTimeState } from "./selector";

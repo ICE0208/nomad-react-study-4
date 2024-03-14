@@ -1,8 +1,15 @@
+import { useRecoilValue } from "recoil";
 import { useTimer } from "./hooks";
+import { roundGoalState } from "./recoils";
+import { useMemo } from "react";
+import { MAX_GOAL, MAX_ROUND } from "./constants";
 
 function App() {
   const { remainingMin, remainingSec, toggleTimer, isPlayingTimer } =
     useTimer();
+  const roundGoal = useRecoilValue(roundGoalState);
+  const { round, goal } = useMemo(() => roundGoal, [roundGoal]);
+
   return (
     <div className="flex h-full flex-col items-center justify-between p-2">
       {/* Title */}
@@ -32,12 +39,16 @@ function App() {
       <div className="flex w-full grow-[2] items-center justify-center gap-14">
         {/* Left Status */}
         <div className="flex w-[66px] flex-col items-center font-semibold">
-          <span className="font-light">0/4</span>
+          <span className="font-light">
+            {round}/{MAX_ROUND}
+          </span>
           <span>ROUND</span>
         </div>
         {/* Right Status */}
         <div className="flex w-[66px] flex-col items-center font-semibold">
-          <span className="font-light">0/12</span>
+          <span className="font-light">
+            {goal}/{MAX_GOAL}
+          </span>
           <span>GOAL</span>
         </div>
       </div>

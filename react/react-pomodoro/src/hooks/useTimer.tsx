@@ -5,6 +5,7 @@ import {
 } from "@/recoils";
 import { useCallback, useEffect, useReducer } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import useManageRoundGoal from "./useRound";
 
 interface timerActionType {
   type: "TOGGLE" | "PLAY" | "PAUSE";
@@ -30,17 +31,18 @@ export default function useTimer() {
     formattedRemainingMinSecState,
   );
   const remainingTime = useRecoilValue(remainingTimeState);
+  const { increaseRound } = useManageRoundGoal();
 
   useEffect(() => {
     if (remainingTime <= 0) {
       // ROUND++
-
+      increaseRound();
       // 타이머 정지
       dispatchTimer({ type: "PAUSE" });
       // 타이머 리셋
       setTime(0);
     }
-  }, [remainingTime, setTime]);
+  }, [remainingTime, setTime, increaseRound]);
 
   useEffect(() => {
     // 플레이 상태가 아닐 때 리턴

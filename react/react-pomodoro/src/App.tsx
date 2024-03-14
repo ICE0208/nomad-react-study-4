@@ -1,22 +1,7 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { formattedRemainingMinSecState } from "./recoils/selector";
-import { useEffect } from "react";
-import { accumulatedTimeState } from "./recoils";
+import { useTimer } from "./hooks";
 
 function App() {
-  const setTime = useSetRecoilState(accumulatedTimeState);
-  const [remainingMin, remainingSec] = useRecoilValue(
-    formattedRemainingMinSecState,
-  );
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setTime((prev) => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(id);
-  }, [setTime]);
-
+  const { remainingMin, remainingSec } = useTimer();
   return (
     <div className="flex h-full flex-col items-center justify-between p-2">
       {/* Title */}

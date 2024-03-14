@@ -1,4 +1,22 @@
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { formattedRemainingMinSecState } from "./recoils/selector";
+import { useEffect } from "react";
+import { accumulatedTimeState } from "./recoils";
+
 function App() {
+  const setTime = useSetRecoilState(accumulatedTimeState);
+  const [remainingMin, remainingSec] = useRecoilValue(
+    formattedRemainingMinSecState,
+  );
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, [setTime]);
+
   return (
     <div className="flex h-full flex-col items-center justify-between p-2">
       {/* Title */}
@@ -6,10 +24,14 @@ function App() {
         <span>Pomodoro</span>
       </div>
       {/* Time */}
-      <div className="flex grow-[4] items-center justify-center gap-1 text-[64px]">
-        <span className="rounded-2xl bg-white px-4 py-6 text-[tomato]">25</span>
+      <div className="flex grow-[4] items-center justify-center gap-1 text-center text-[64px] font-medium">
+        <span className="flex h-[150px] w-[110px] items-center justify-center rounded-2xl bg-white px-4 py-6 text-[tomato]">
+          {remainingMin}
+        </span>
         <span>:</span>
-        <span className="rounded-2xl bg-white px-4 py-6 text-[tomato]">00</span>
+        <span className="flex h-[150px] w-[110px] items-center justify-center rounded-2xl bg-white px-4 py-6 text-[tomato]">
+          {remainingSec}
+        </span>
       </div>
       {/* Button */}
       <div className="flex grow-[3] items-center justify-center">

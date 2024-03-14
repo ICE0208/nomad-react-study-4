@@ -3,7 +3,7 @@ import { useTimer } from "./hooks";
 import { roundGoalState } from "./recoils";
 import { useMemo } from "react";
 import { MAX_GOAL, MAX_ROUND } from "./constants";
-import { TogglePlayButton } from "./components";
+import { TimeCard, TogglePlayButton } from "./components";
 
 function App() {
   const { remainingMin, remainingSec, toggleTimer, isPlayingTimer } =
@@ -19,13 +19,9 @@ function App() {
       </div>
       {/* Time */}
       <div className="flex grow-[4] items-center justify-center gap-1 text-center text-[64px] font-medium">
-        <span className="flex h-[150px] w-[110px] items-center justify-center rounded-2xl bg-white px-4 py-6 text-[tomato]">
-          {remainingMin}
-        </span>
+        <TimeCard value={remainingMin} />
         <span>:</span>
-        <span className="flex h-[150px] w-[110px] items-center justify-center rounded-2xl bg-white px-4 py-6 text-[tomato]">
-          {remainingSec}
-        </span>
+        <TimeCard value={remainingSec} />
       </div>
       {/* Button */}
       <TogglePlayButton onClick={toggleTimer} isPlayingTimer={isPlayingTimer} />

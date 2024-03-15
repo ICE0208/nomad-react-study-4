@@ -3,7 +3,12 @@ import { useTimer } from "./hooks";
 import { roundGoalState } from "./recoils";
 import { useMemo } from "react";
 import { MAX_GOAL, MAX_MINUTES, MAX_ROUND } from "./constants";
-import { ResetButton, TimeCard, TogglePlayButton } from "./components";
+import {
+  ResetButton,
+  StatusDisplay,
+  TimeCard,
+  TogglePlayButton,
+} from "./components";
 import Colon from "./components/Colon";
 
 function App() {
@@ -18,6 +23,7 @@ function App() {
       <div className="flex grow-[2] items-center text-[52px] font-bold">
         <span>Pomodoro</span>
       </div>
+
       {/* Time */}
       <div className="flex grow-[4] items-center justify-center gap-4 text-center text-[72px] font-semibold">
         <TimeCard value={remainingMin} />
@@ -27,6 +33,7 @@ function App() {
         />
         <TimeCard value={remainingSec} />
       </div>
+
       {/* Button */}
       <div className="relative flex grow-[3] items-center justify-center">
         <TogglePlayButton
@@ -39,22 +46,22 @@ function App() {
           )}
         </span>
       </div>
+
       {/* Status */}
       <div className="flex w-full grow-[2] items-center justify-center gap-20 text-2xl">
-        {/* Left Status */}
-        <div className="flex w-[100px] flex-col items-center font-semibold">
-          <span className="font-light">
-            {round}/{MAX_ROUND}
-          </span>
-          <span>ROUND</span>
-        </div>
-        {/* Right Status */}
-        <div className="flex w-[100px] flex-col items-center font-semibold">
-          <span className="font-light">
-            {goal}/{MAX_GOAL}
-          </span>
-          <span>GOAL</span>
-        </div>
+        {/* Left Status (ROUND) */}
+        <StatusDisplay
+          statusType="ROUND"
+          statusValue={round}
+          statusMaxValue={MAX_ROUND}
+        />
+
+        {/* Right Status (GOAL) */}
+        <StatusDisplay
+          statusType="GOAL"
+          statusValue={goal}
+          statusMaxValue={MAX_GOAL}
+        />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { roundGoalState } from "./recoils";
 import { useMemo } from "react";
 import { MAX_GOAL, MAX_ROUND } from "./constants";
 import { TimeCard, TogglePlayButton } from "./components";
+import Colon from "./components/Colon";
 
 function App() {
   const { remainingMin, remainingSec, toggleTimer, isPlayingTimer } =
@@ -20,7 +21,10 @@ function App() {
       {/* Time */}
       <div className="flex grow-[4] items-center justify-center gap-4 text-center text-[72px] font-semibold">
         <TimeCard value={remainingMin} />
-        <span className="">:</span>
+        <Colon
+          key={`${remainingMin}-${remainingSec}-${isPlayingTimer}`}
+          isPlayingTimer={isPlayingTimer}
+        />
         <TimeCard value={remainingSec} />
       </div>
       {/* Button */}

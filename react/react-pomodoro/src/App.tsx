@@ -13,7 +13,7 @@ function App() {
   const { round, goal } = useMemo(() => roundGoal, [roundGoal]);
 
   return (
-    <div className="flex h-full flex-col items-center justify-between p-2">
+    <div className="flex h-full select-none flex-col items-center justify-between p-2">
       {/* Title */}
       <div className="flex grow-[2] items-center text-[52px] font-bold">
         <span>Pomodoro</span>

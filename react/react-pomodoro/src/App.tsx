@@ -26,20 +26,25 @@ function App() {
 
       {/* Time */}
       <div className="flex grow-[4] items-center justify-center gap-4 text-center text-[72px] font-semibold">
+        {/* Minute Time */}
         <TimeCard value={remainingMin} />
         <Colon
           key={`${remainingMin}-${remainingSec}-${isPlayingTimer}`}
           isPlayingTimer={isPlayingTimer}
         />
+        {/* Second Time */}
         <TimeCard value={remainingSec} />
       </div>
 
-      {/* Button */}
+      {/* Button Area */}
       <div className="relative flex grow-[3] items-center justify-center">
+        {/* Play/Pause Button */}
         <TogglePlayButton
           onClick={toggleTimer}
           isPlayingTimer={isPlayingTimer}
         />
+
+        {/* Timer Reset Button */}
         <span className="absolute left-1/2 top-2 -translate-x-1/2 -translate-y-1/2">
           {isPlayingTimer || +remainingMin === MAX_MINUTES ? null : (
             <ResetButton />
@@ -55,7 +60,6 @@ function App() {
           statusValue={round}
           statusMaxValue={MAX_ROUND}
         />
-
         {/* Right Status (GOAL) */}
         <StatusDisplay
           statusType="GOAL"

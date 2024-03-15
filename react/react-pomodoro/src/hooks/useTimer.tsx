@@ -5,7 +5,7 @@ import {
 } from "@/recoils";
 import { useCallback, useEffect, useReducer } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import useManageRoundGoal from "./useRound";
+import { useManageRoundGoal } from ".";
 
 interface timerActionType {
   type: "TOGGLE" | "PLAY" | "PAUSE";
@@ -24,6 +24,7 @@ function timerReducer(state: boolean, action: timerActionType) {
   }
 }
 
+/** 전역 타이머를 다룰 수 있는 훅입니다. */
 export default function useTimer() {
   const [isPlayingTimer, dispatchTimer] = useReducer(timerReducer, false);
   const setTime = useSetRecoilState(accumulatedTimeState);
@@ -34,12 +35,13 @@ export default function useTimer() {
   const { increaseRound } = useManageRoundGoal();
 
   useEffect(() => {
+    // 남은 타이머의 시간이 0에 도달하면 다음 동작을 진행합니다.
     if (remainingTime <= 0) {
-      // ROUND++
+      // ROUND를 1 증가시킵니다.
       increaseRound();
-      // 타이머 정지
+      // 타이머를 정지시킵니다.
       dispatchTimer({ type: "PAUSE" });
-      // 타이머 리셋
+      // 타이머를 리셋시킵니다.
       setTime(0);
     }
   }, [remainingTime, setTime, increaseRound]);

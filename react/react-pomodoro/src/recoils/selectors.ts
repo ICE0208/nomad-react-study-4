@@ -3,6 +3,7 @@ import { numberToStringFormatter } from "@/utils";
 import { accumulatedTimeState } from ".";
 import { selector } from "recoil";
 
+/** 남은 시간을 반환하는 셀렉터입니다. */
 export const remainingTimeState = selector({
   key: "remainingTime",
   get: ({ get }) => {
@@ -11,6 +12,7 @@ export const remainingTimeState = selector({
   },
 });
 
+/** 남은 분과 초를 MM,SS 포맷에 맞추어 문자열로 반환하는 셀렉터입니다. */
 export const formattedRemainingMinSecState = selector({
   key: "minSec",
   get: ({ get }) => {

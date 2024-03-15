@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Colon({ isPlayingTimer }: { isPlayingTimer: boolean }) {
   return (
+    // 플레이 중인 상태에서만 애니메이션이 동작하도록 하였습니다.
     <motion.span
       animate={
         isPlayingTimer && {

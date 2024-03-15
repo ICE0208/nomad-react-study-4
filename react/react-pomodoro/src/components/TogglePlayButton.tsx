@@ -17,6 +17,7 @@ export default function TogglePlayButton({
       className="flex items-center justify-center"
       onClick={onClick}
     >
+      {/* 타이머가 실행중일 때는 Pause, 중지중일 때는 Play 아이콘을 보여줍니다. */}
       <span className="rounded-full bg-[#0000006d] p-8">
         {isPlayingTimer ? <PauseSVG /> : <PlaySVG />}
       </span>

@@ -45,7 +45,7 @@ function App() {
         />
 
         {/* Timer Reset Button */}
-        <span className="absolute left-1/2 top-2 -translate-x-1/2 -translate-y-1/2">
+        <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
           {isPlayingTimer || +remainingMin === MAX_MINUTES ? null : (
             <ResetButton />
           )}

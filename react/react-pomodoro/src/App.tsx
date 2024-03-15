@@ -2,8 +2,8 @@ import { useRecoilValue } from "recoil";
 import { useTimer } from "./hooks";
 import { roundGoalState } from "./recoils";
 import { useMemo } from "react";
-import { MAX_GOAL, MAX_ROUND } from "./constants";
-import { TimeCard, TogglePlayButton } from "./components";
+import { MAX_GOAL, MAX_MINUTES, MAX_ROUND } from "./constants";
+import { ResetButton, TimeCard, TogglePlayButton } from "./components";
 import Colon from "./components/Colon";
 
 function App() {
@@ -28,7 +28,17 @@ function App() {
         <TimeCard value={remainingSec} />
       </div>
       {/* Button */}
-      <TogglePlayButton onClick={toggleTimer} isPlayingTimer={isPlayingTimer} />
+      <div className="relative flex grow-[3] items-center justify-center">
+        <TogglePlayButton
+          onClick={toggleTimer}
+          isPlayingTimer={isPlayingTimer}
+        />
+        <span className="absolute left-1/2 top-2 -translate-x-1/2 -translate-y-1/2">
+          {isPlayingTimer || +remainingMin === MAX_MINUTES ? null : (
+            <ResetButton />
+          )}
+        </span>
+      </div>
       {/* Status */}
       <div className="flex w-full grow-[2] items-center justify-center gap-20 text-2xl">
         {/* Left Status */}

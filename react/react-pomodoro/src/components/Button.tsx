@@ -14,7 +14,7 @@ export default function TogglePlayButton({
       whileHover={{ scale: 1.2 }}
       transition={{ scale: { type: "spring", stiffness: 500 }, type: "tween" }}
       whileTap={{ scale: 0.9, transition: { type: "tween", duration: 0.1 } }}
-      className="flex grow-[3] items-center justify-center"
+      className="flex items-center justify-center"
       onClick={onClick}
     >
       <span className="rounded-full bg-[#0000006d] p-8">

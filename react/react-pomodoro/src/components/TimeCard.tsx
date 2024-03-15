@@ -24,7 +24,7 @@ export default function TimeCard({ value }: TimeCardProps) {
         scale: { type: "spring", stiffness: 400, velocity: 3, damping: 20 },
       }}
       key={value}
-      className="flex h-[150px] w-[110px] items-center justify-center rounded-2xl bg-white px-4 py-6 text-[tomato]"
+      className="flex h-[260px] w-[180px] items-center justify-center rounded-2xl bg-white text-[tomato]"
     >
       {value}
     </motion.span>

@@ -17,18 +17,20 @@ export default function TogglePlayButton({
       className="flex grow-[3] items-center justify-center"
       onClick={onClick}
     >
-      <span className="rounded-full bg-[#0000006d] p-4">
+      <span className="rounded-full bg-[#0000006d] p-8">
         {isPlayingTimer ? <PauseSVG /> : <PlaySVG />}
       </span>
     </motion.div>
   );
 }
+const SVG_SIZE_CLASS = "h-10 w-10";
+
 const PlaySVG = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="h-8 w-8"
+    className={SVG_SIZE_CLASS}
   >
     <path
       fillRule="evenodd"
@@ -43,7 +45,7 @@ const PauseSVG = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="h-8 w-8"
+    className={SVG_SIZE_CLASS}
   >
     <path
       fillRule="evenodd"

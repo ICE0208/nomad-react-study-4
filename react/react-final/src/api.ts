@@ -1,15 +1,21 @@
 const BASE_URL = "https://movies-api.nomadcoders.workers.dev";
 
 export function getPopular(): Promise<IMovie[]> {
-  return fetch(`${BASE_URL}/popular`).then((r) => r.json());
+  return fetch(`${BASE_URL}/popular`).then((r) =>
+    r.json().then((d) => d.results),
+  );
 }
 
 export function getNowPlaying(): Promise<IMovie[]> {
-  return fetch(`${BASE_URL}/now-playing`).then((r) => r.json());
+  return fetch(`${BASE_URL}/now-playing`).then((r) =>
+    r.json().then((d) => d.results),
+  );
 }
 
 export function getComingSoon(): Promise<IMovie[]> {
-  return fetch(`${BASE_URL}/coming-soon`).then((r) => r.json());
+  return fetch(`${BASE_URL}/coming-soon`).then((r) =>
+    r.json().then((d) => d.results),
+  );
 }
 
 export function getMovie(id: string) {
@@ -24,7 +30,7 @@ export function makeBgPath(image: string) {
   return `https://image.tmdb.org/t/p/original${image}`;
 }
 
-interface IMovie {
+export interface IMovie {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];

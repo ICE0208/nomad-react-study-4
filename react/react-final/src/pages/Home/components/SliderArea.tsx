@@ -58,10 +58,7 @@ export default function SliderArea({ title, datas }: SliderProps) {
     [cardPerSlide, clearButtonDelay, datas],
   );
 
-  const myDatas = useMemo(
-    () => [...datas.slice(start), ...datas.slice(0, start)],
-    [start, datas],
-  );
+  const sortedDataWithStart = [...datas.slice(start), ...datas.slice(0, start)];
 
   const variants: Variants = useMemo(
     () => ({
@@ -80,13 +77,8 @@ export default function SliderArea({ title, datas }: SliderProps) {
 
   return (
     <div>
-      <h3 className="mb-12">{title}</h3>
-      <div
-        className={
-          "relative flex h-auto w-full items-center"
-          // cardPerSlide2Aspect[cardPerSlide]
-        }
-      >
+      <h3 className="mb-4 ml-5 font-serif text-3xl font-medium ">{title}</h3>
+      <div className={"relative flex h-auto w-full items-center"}>
         <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
           <motion.div
             variants={variants}
@@ -102,14 +94,14 @@ export default function SliderArea({ title, datas }: SliderProps) {
             key={start}
             className="relative flex flex-nowrap justify-center"
           >
-            {myDatas.map((data) => {
+            {sortedDataWithStart.map((data) => {
               return (
                 <Card
                   key={data.title}
                   title={data.title}
                   backdropPath={data.backdrop_path}
                   className={
-                    "flex flex-none flex-col items-start px-2 " +
+                    "flex flex-none flex-col items-start px-1 " +
                     cardPerSlide2WidthPerCard[cardPerSlide]
                   }
                 />
@@ -126,7 +118,7 @@ export default function SliderArea({ title, datas }: SliderProps) {
           </motion.div>
         </AnimatePresence>
         {datas.length > 0 && (
-          <div className="absolute left-0 top-1/2 box-border h-[calc(100%-3rem)] w-full -translate-y-1/2 py-6">
+          <div className="absolute left-0 top-0 box-border h-[calc(100%-2rem)] w-full">
             <SliderButton
               direction="left"
               className={`absolute left-0 top-1/2 -translate-y-1/2`}
@@ -154,11 +146,15 @@ const Card = ({
   className?: string;
 }) => (
   <div className={`${className}`}>
-    <div className="relative py-6">
-      <img src={makeImagePath(backdropPath)} alt={title} className="" />
+    <div className="relative pb-8">
+      <img
+        src={makeImagePath(backdropPath)}
+        alt={title}
+        className="rounded-md"
+      />
       <div
         className={[
-          "absolute -bottom-0 left-0 text-ellipsis text-nowrap font-semibold",
+          "absolute -bottom-0 left-0 text-ellipsis text-nowrap font-serif",
           "",
         ].join(" ")}
       >

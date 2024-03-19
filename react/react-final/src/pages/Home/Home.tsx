@@ -9,6 +9,11 @@ export default function Home() {
   };
 
   return (
-    <div>{<SliderArea title="Popular" datas={results[0].data ?? []} />}</div>
+    <>
+      <div className="mb-8 h-96 w-full animate-pulse bg-gray-800 "></div>
+      <div>
+        <SliderArea title="Popular" datas={results[0].data ?? []} />
+      </div>
+    </>
   );
 }

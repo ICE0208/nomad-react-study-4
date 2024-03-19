@@ -23,7 +23,7 @@ export default function SliderButton({
       whileHover={{
         scaleX: 1.3,
         translateY: "-50%",
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        backgroundColor: "rgba(0, 0, 0, 0.85)",
         borderRight: direction === "left" ? "1px solid white" : "0",
         borderLeft: direction === "right" ? "1px solid white" : "0",
       }}
@@ -35,11 +35,20 @@ export default function SliderButton({
       }}
       className={[
         `${className}`,
-        `flex h-full w-10 cursor-pointer items-center justify-center bg-[#000000d1] text-white shadow-2xl`,
+        `flex h-full w-10 cursor-pointer items-center justify-center bg-[#000000d2] text-white shadow-2xl`,
         `${direction === "left" ? "rounded-r-3xl" : "rounded-l-3xl"}`,
       ].join(" ")}
     >
-      {direction === "left" ? <LeftSVG /> : <RightSVG />}
+      <span
+        className="absolute"
+        style={
+          direction === "right"
+            ? { transform: "rotateZ(180deg)", right: "6px" }
+            : { left: "8px" }
+        }
+      >
+        <LeftSVG />
+      </span>
     </motion.div>
   );
 }
@@ -47,33 +56,16 @@ export default function SliderButton({
 const LeftSVG = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
+    fill="none"
     viewBox="0 0 24 24"
-    fill="currentColor"
-    className="h-6 w-6"
+    strokeWidth={2.4}
     stroke="currentColor"
-    strokeWidth={1.5}
+    className="h-6 w-6"
   >
     <path
-      fillRule="evenodd"
-      d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
-
-const RightSVG = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="h-6 w-6"
-    stroke="currentColor"
-    strokeWidth={1.5}
-  >
-    <path
-      fillRule="evenodd"
-      d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-      clipRule="evenodd"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15.75 19.5 8.25 12l7.5-7.5"
     />
   </svg>
 );

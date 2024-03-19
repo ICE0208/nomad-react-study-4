@@ -2,6 +2,7 @@ import { IMovie, makeImagePath } from "@/api";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useCardPerSlide } from "../hooks";
+import { SliderButton } from ".";
 
 interface SliderProps {
   title: string;
@@ -16,15 +17,7 @@ const cardPerSlide2WidthPerCard = {
   1: "w-[50%]",
 };
 
-const cardPerSlide2Aspect = {
-  5: "aspect-[7/1]",
-  4: "aspect-[6/1]",
-  3: "aspect-[5/1]",
-  2: "aspect-[4/1]",
-  1: "aspect-[3/1]",
-};
-
-const ANIMATION_DURATION = 0.6;
+export const SLIDER_ANIMATION_DURATION = 0.6;
 
 export default function SliderArea({ title, datas }: SliderProps) {
   const [start, setStart] = useState(0);
@@ -43,27 +36,27 @@ export default function SliderArea({ title, datas }: SliderProps) {
     [],
   );
 
-  const handlePrev = () => {
-    if (isButtonDelay.current) return;
-    isButtonDelay.current = true;
+  const handleSlide = useMemo(
+    () =>
+      ({ direction }: { direction: 1 | -1 }) => {
+        if (isButtonDelay.current) return;
+        isButtonDelay.current = true;
 
-    setWasNext(false);
-    setStart((prev) => {
-      return (prev - cardPerSlide - 1) % datas.length;
-    });
-
-    setTimeout(clearButtonDelay, ANIMATION_DURATION * 1000 + 100);
-  };
-
-  const handleNext = () => {
-    if (isButtonDelay.current) return;
-    isButtonDelay.current = true;
-
-    setWasNext(true);
-    setStart((prev) => (prev + cardPerSlide + 1) % datas.length);
-
-    setTimeout(clearButtonDelay, ANIMATION_DURATION * 1000 + 100);
-  };
+        if (direction === 1) {
+          setWasNext(true);
+          setStart((prev) => (prev + cardPerSlide + 1) % datas.length);
+        } else if (direction === -1) {
+          setWasNext(false);
+          setStart((prev) => {
+            return (prev - cardPerSlide - 1) % datas.length;
+          });
+        }
+        // 애니메이션 + 추가 여유시간을 주었습니다.
+        // 추가 여유시간을 주지 않으면 가끔씩 버그가 발생합니다.
+        setTimeout(clearButtonDelay, SLIDER_ANIMATION_DURATION * 1000 + 100);
+      },
+    [cardPerSlide, clearButtonDelay, datas],
+  );
 
   const myDatas = useMemo(
     () => [...datas.slice(start), ...datas.slice(0, start)],
@@ -88,8 +81,13 @@ export default function SliderArea({ title, datas }: SliderProps) {
   return (
     <div>
       <h3 className="mb-12">{title}</h3>
-      <div className={"bg-red-300 " + cardPerSlide2Aspect[cardPerSlide]}>
-        <AnimatePresence initial={false} custom={wasNext}>
+      <div
+        className={
+          "relative flex h-auto w-full items-center"
+          // cardPerSlide2Aspect[cardPerSlide]
+        }
+      >
+        <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
           <motion.div
             variants={variants}
             custom={wasNext}
@@ -98,11 +96,11 @@ export default function SliderArea({ title, datas }: SliderProps) {
             exit="exit"
             // onAnimationComplete={clearButtonDelay}
             transition={{
-              duration: ANIMATION_DURATION,
+              duration: SLIDER_ANIMATION_DURATION,
               ease: "easeInOut",
             }}
             key={start}
-            className="absolute flex w-full flex-nowrap justify-center overflow-x-hidden"
+            className="relative flex flex-nowrap justify-center"
           >
             {myDatas.map((data) => {
               return (
@@ -127,10 +125,20 @@ export default function SliderArea({ title, datas }: SliderProps) {
             )}
           </motion.div>
         </AnimatePresence>
-      </div>
-      <div className="mt-[300px]">
-        <button onClick={handlePrev}>prev</button>
-        <button onClick={handleNext}>next</button>
+        {datas.length > 0 && (
+          <div className="absolute left-0 top-1/2 box-border h-[calc(100%-3rem)] w-full -translate-y-1/2 py-6">
+            <SliderButton
+              direction="left"
+              className={`absolute left-0 top-1/2 -translate-y-1/2`}
+              onClick={() => handleSlide({ direction: -1 })}
+            />
+            <SliderButton
+              direction="right"
+              className={`absolute right-0 top-1/2 -translate-y-1/2`}
+              onClick={() => handleSlide({ direction: 1 })}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -145,8 +153,17 @@ const Card = ({
   title: string;
   className?: string;
 }) => (
-  <div className={className}>
-    <img src={makeImagePath(backdropPath)} alt={title} />
-    <span className="w-full text-ellipsis text-nowrap">{title}</span>
+  <div className={`${className}`}>
+    <div className="relative py-6">
+      <img src={makeImagePath(backdropPath)} alt={title} className="" />
+      <div
+        className={[
+          "absolute -bottom-0 left-0 text-ellipsis text-nowrap font-semibold",
+          "",
+        ].join(" ")}
+      >
+        {title}
+      </div>
+    </div>
   </div>
 );

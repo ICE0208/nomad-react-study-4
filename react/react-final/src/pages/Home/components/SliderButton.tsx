@@ -13,7 +13,7 @@ export default function SliderButton({
 }: SliderButtonProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, translateY: "-50%" }}
+      initial={{ opacity: 0, translateY: "-50%", scaleY: 1.1 }}
       animate={{
         opacity: 1,
         transition: { duration: 0.3 },

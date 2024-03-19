@@ -10,9 +10,11 @@ export default function Home() {
 
   return (
     <>
-      <div className="mb-8 h-96 w-full animate-pulse bg-gray-800 "></div>
-      <div>
+      <div className="mb-8 h-96 w-full animate-pulse bg-gray-800"></div>
+      <div className="mb-32 space-y-16">
         <SliderArea title="Popular" datas={results[0].data ?? []} />
+        <SliderArea title="Comming Soon" datas={results[1].data ?? []} />
+        <SliderArea title="Now Playing" datas={results[2].data ?? []} />
       </div>
     </>
   );

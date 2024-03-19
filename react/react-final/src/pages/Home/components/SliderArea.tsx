@@ -77,59 +77,72 @@ export default function SliderArea({ title, datas }: SliderProps) {
 
   return (
     <div>
-      <h3 className="mb-4 ml-5 font-serif text-3xl font-medium ">{title}</h3>
+      <div>
+        <h3 className="mb-4 ml-5 font-serif text-3xl font-medium">{title}</h3>
+      </div>
       <div className={"relative flex h-auto w-full items-center"}>
-        <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
-          <motion.div
-            variants={variants}
-            custom={wasNext}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            // onAnimationComplete={clearButtonDelay}
-            transition={{
-              duration: SLIDER_ANIMATION_DURATION,
-              ease: "easeInOut",
-            }}
-            key={start}
-            className="relative flex flex-nowrap justify-center"
+        {datas.length === 0 ? (
+          <div
+            className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}
           >
-            {sortedDataWithStart.map((data) => {
-              return (
-                <Card
-                  key={data.title}
-                  title={data.title}
-                  backdropPath={data.backdrop_path}
-                  className={
-                    "flex flex-none flex-col items-start px-1 " +
-                    cardPerSlide2WidthPerCard[cardPerSlide]
-                  }
-                />
-              );
-            })}
-            {isNeedOneSpace && (
-              <div
-                key="space"
-                className={
-                  "flex-none " + cardPerSlide2WidthPerCard[cardPerSlide]
-                }
-              />
-            )}
-          </motion.div>
-        </AnimatePresence>
-        {datas.length > 0 && (
-          <div className="absolute left-0 top-0 box-border h-[calc(100%-2rem)] w-full">
-            <SliderButton
-              direction="left"
-              className={`absolute left-0 top-1/2 -translate-y-1/2`}
-              onClick={() => handleSlide({ direction: -1 })}
-            />
-            <SliderButton
-              direction="right"
-              className={`absolute right-0 top-1/2 -translate-y-1/2`}
-              onClick={() => handleSlide({ direction: 1 })}
-            />
+            <div className="aspect-[16/9] w-full"></div>
           </div>
+        ) : (
+          <>
+            <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
+              <motion.div
+                variants={variants}
+                custom={wasNext}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                // onAnimationComplete={clearButtonDelay}
+                transition={{
+                  duration: SLIDER_ANIMATION_DURATION,
+                  ease: "easeInOut",
+                }}
+                key={start}
+                className="relative flex flex-nowrap justify-center"
+              >
+                {sortedDataWithStart.map((data) => {
+                  return (
+                    <Card
+                      key={data.title}
+                      title={data.title}
+                      backdropPath={data.backdrop_path}
+                      className={
+                        "flex flex-none flex-col items-start px-1 " +
+                        cardPerSlide2WidthPerCard[cardPerSlide]
+                      }
+                    />
+                  );
+                })}
+
+                {isNeedOneSpace && (
+                  <div
+                    key="space"
+                    className={
+                      "min-h-[50px] flex-none " +
+                      cardPerSlide2WidthPerCard[cardPerSlide]
+                    }
+                  />
+                )}
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="absolute left-0 top-0 box-border h-[calc(100%-2rem)] w-full overflow-hidden">
+              <SliderButton
+                direction="left"
+                className={`absolute left-0 top-1/2 -translate-y-1/2`}
+                onClick={() => handleSlide({ direction: -1 })}
+              />
+              <SliderButton
+                direction="right"
+                className={`absolute right-0 top-1/2 -translate-y-1/2`}
+                onClick={() => handleSlide({ direction: 1 })}
+              />
+            </div>
+          </>
         )}
       </div>
     </div>
@@ -150,7 +163,7 @@ const Card = ({
       <img
         src={makeImagePath(backdropPath)}
         alt={title}
-        className="rounded-md"
+        className="aspect-[16/9] rounded-md"
       />
       <div
         className={[

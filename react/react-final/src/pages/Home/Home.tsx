@@ -18,7 +18,7 @@ export default function Home() {
       animate(
         ".slider",
         { opacity: 1 },
-        { delay: stagger(0.8, { startDelay: 0 }) },
+        { duration: 0.5, delay: stagger(0.6, { startDelay: 0 }) },
       );
     }
   }, [isLoading, animate, scope]);

@@ -9,6 +9,14 @@ interface SliderProps {
   datas: IMovie[];
 }
 
+const movePercent = {
+  5: 83.33333333,
+  4: 80,
+  3: 75,
+  2: 66,
+  1: 50,
+};
+
 const cardPerSlide2WidthPerCard = {
   5: "w-1/6",
   4: "w-[20%]",
@@ -44,11 +52,11 @@ export default function SliderArea({ title, datas }: SliderProps) {
 
         if (direction === 1) {
           setWasNext(true);
-          setStart((prev) => (prev + cardPerSlide + 1) % datas.length);
+          setStart((prev) => (prev + cardPerSlide) % datas.length);
         } else if (direction === -1) {
           setWasNext(false);
           setStart((prev) => {
-            return (prev - cardPerSlide - 1) % datas.length;
+            return (prev - cardPerSlide) % datas.length;
           });
         }
         // 애니메이션 + 추가 여유시간을 주었습니다.
@@ -63,26 +71,30 @@ export default function SliderArea({ title, datas }: SliderProps) {
   const variants: Variants = useMemo(
     () => ({
       initial: (wN: boolean) => ({
+        opacity: 0,
         x: wN ? "100%" : "-100%",
       }),
       animate: (wN: boolean) => ({
+        opacity: [0, 0, 1],
         x: wN ? "0%" : "0%",
       }),
       exit: (wN: boolean) => ({
-        x: wN ? "-100%" : "100%",
+        x: wN
+          ? `${movePercent[cardPerSlide] * -1}%`
+          : `${movePercent[cardPerSlide]}%`,
       }),
     }),
-    [],
+    [cardPerSlide],
   );
 
   return (
     <div>
       <div>
-        <h3 className="absolute mb-4 ml-5 font-serif text-3xl font-medium">
+        <h3 className="absolute ml-5 font-serif text-3xl font-medium">
           {title}
         </h3>
       </div>
-      <div className={"relative mt-6 flex h-auto w-full items-center"}>
+      <div className={"relative flex h-auto items-center overflow-y-hidden "}>
         {datas.length === 0 ? (
           <div
             className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}
@@ -90,7 +102,7 @@ export default function SliderArea({ title, datas }: SliderProps) {
             <div className="aspect-[16/9] w-full"></div>
           </div>
         ) : (
-          <div className="relative flex items-center">
+          <div className="relative flex items-center overflow-visible">
             <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
               <motion.div
                 variants={variants}
@@ -102,9 +114,13 @@ export default function SliderArea({ title, datas }: SliderProps) {
                 transition={{
                   duration: SLIDER_ANIMATION_DURATION,
                   ease: "easeInOut",
+                  opacity: {
+                    times: [0, 1, 1],
+                    duration: SLIDER_ANIMATION_DURATION,
+                  },
                 }}
                 key={start}
-                className="relative flex flex-nowrap justify-center py-4"
+                className="relative flex flex-nowrap justify-center overflow-visible py-12"
               >
                 {sortedDataWithStart.map((data) => {
                   return (
@@ -132,7 +148,7 @@ export default function SliderArea({ title, datas }: SliderProps) {
               </motion.div>
             </AnimatePresence>
 
-            <div className="pointer-events-none absolute left-0 top-1/2 box-border h-[calc(100%-4rem)] w-full -translate-y-1/2 overflow-hidden">
+            <div className="pointer-events-none absolute left-0 top-1/2 box-border h-[calc(100%-8rem)] w-full -translate-y-1/2 overflow-hidden">
               <SliderButton
                 direction="left"
                 className={`pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2`}
@@ -167,7 +183,7 @@ const Card = ({
     clearTimeout(setTimeoutRef.current);
     setTimeoutRef.current = setTimeout(() => {
       animate(scope.current, { zIndex: 500 });
-      animate(".card-text", { opacity: 0 });
+      animate(".card-text", { opacity: 0 }, { duration: 0.1 });
       animate(".hover-text", { opacity: 1 });
     }, 300);
   };
@@ -182,10 +198,10 @@ const Card = ({
 
   return (
     <div className={`${className} overflow-visible`} ref={scope}>
-      <div className="relative my-4 overflow-visible">
+      <div className="relative my-4 overflow-visible ">
         <motion.div
           className="cursor-pointer rounded-md"
-          whileHover={{ scale: 1.3, transition: { delay: 0.3 } }}
+          whileHover={{ scale: 1.4, transition: { delay: 0.3 } }}
           onHoverStart={onHover}
           onHoverEnd={onHoverEnd}
         >
@@ -207,7 +223,8 @@ const Card = ({
         </motion.div>
         <div
           className={[
-            "absolute -bottom-8 left-0 text-ellipsis text-nowrap font-serif",
+            "absolute -bottom-1 left-0 w-full translate-y-full text-pretty font-serif",
+            "text-md sm:text-lg md:text-xl",
             "card-text",
           ].join(" ")}
         >

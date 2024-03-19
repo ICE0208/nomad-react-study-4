@@ -24,8 +24,8 @@ export default function SliderButton({
         scaleX: 1.3,
         translateY: "-50%",
         backgroundColor: "rgba(0, 0, 0, 0.85)",
-        borderRight: direction === "left" ? "1px solid white" : "0",
-        borderLeft: direction === "right" ? "1px solid white" : "0",
+        borderRight: direction === "left" ? "1px solid black" : "0",
+        borderLeft: direction === "right" ? "1px solid black" : "0",
       }}
       transition={{
         translateY: { duration: 0 },

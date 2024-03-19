@@ -23,7 +23,7 @@ export function getMovie(id: string) {
 }
 
 export function makeImagePath(image: string) {
-  return `https://image.tmdb.org/t/p/w500${image}`;
+  return `https://image.tmdb.org/t/p/w780${image}`;
 }
 
 export function makeBgPath(image: string) {

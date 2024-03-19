@@ -26,7 +26,7 @@ export default function useCardPerSlide() {
   }, []);
 
   const debounceWindowSizeChange = useMemo(
-    () => debounce(updateCardPerSlide, 50),
+    () => debounce(updateCardPerSlide, 10),
     [updateCardPerSlide],
   );
 

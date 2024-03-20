@@ -14,16 +14,14 @@ function App() {
 
   return (
     <>
-      <div>
-        <Navbar />
-        <main>
-          <Outlet
-            context={{
-              results,
-            }}
-          />
-        </main>
-      </div>
+      <Navbar />
+      <main>
+        <Outlet
+          context={{
+            results,
+          }}
+        />
+      </main>
     </>
   );
 }

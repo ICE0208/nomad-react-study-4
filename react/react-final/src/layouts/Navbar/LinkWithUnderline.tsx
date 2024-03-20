@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link, useMatch } from "react-router-dom";
 
 interface LinkWithUnderlineProps {
@@ -13,16 +13,24 @@ export default function LinkWithUnderline({
   const match = useMatch(url);
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center overflow-visible">
       <Link to={url}>{text}</Link>
-      <div className="relative flex w-full justify-center">
+      <AnimatePresence>
         {match && (
           <motion.div
             layoutId="underline"
-            className="absolute w-9/12 border-b-4 border-b-[#00000089]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              type: "spring",
+              bounce: 0.4,
+              duration: 0.6,
+            }}
+            className="absolute -bottom-1 w-11/12 border-b-4 border-b-[#ffffffc5]"
           ></motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }

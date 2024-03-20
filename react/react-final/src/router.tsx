@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import { Home, Popular } from "./pages";
+import { ComingSoon, Home, NowPlaying, Popular } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/coming-soon",
-        element: <h1>Coming Soon</h1>,
+        element: <ComingSoon />,
       },
       {
         path: "/now-playing",
-        element: <h1>Now Playing</h1>,
+        element: <NowPlaying />,
       },
     ],
   },

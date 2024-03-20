@@ -12,9 +12,9 @@ export default function Popular() {
   const result = results[0].data;
 
   return (
-    <div className="flex flex-col items-center px-16 py-12 font-serif">
+    <div className="flex flex-col items-center overflow-hidden px-16 py-12 font-serif">
       <h1 className="mb-12 text-3xl">- Popular -</h1>
-      <MovieList datas={result ?? []} />
+      {!isLoading && <MovieList datas={result ?? []} />}
     </div>
   );
 }

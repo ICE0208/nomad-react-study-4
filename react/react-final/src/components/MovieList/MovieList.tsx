@@ -1,12 +1,15 @@
 import { IMovie } from "@/api";
 import Movie from "./Movie";
 import { Variants, motion } from "framer-motion";
+import { useBasePath } from "@/hooks";
 
 interface MoveListProps {
   datas: IMovie[];
 }
 
 export default function MovieList({ datas }: MoveListProps) {
+  const basePath = useBasePath();
+
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -46,9 +49,9 @@ export default function MovieList({ datas }: MoveListProps) {
           <motion.span
             key={data.id}
             variants={item}
-            className="overflow-visible"
+            className="w-full overflow-visible"
           >
-            <Movie data={data} />
+            <Movie data={data} basePath={basePath} />
           </motion.span>
         ))}
       </motion.div>

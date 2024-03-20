@@ -25,8 +25,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="mb-8 h-96 w-full animate-pulse bg-gray-800"></div>
-      <div ref={scope} className="mb-32 space-y-2">
+      <div className="mb-16 h-96 w-full animate-pulse bg-gray-800"></div>
+      <div ref={scope} className="space-y-6 pb-16">
         <div className="slider opacity-0">
           <SliderArea title="Popular" datas={results[0].data ?? []} />
         </div>

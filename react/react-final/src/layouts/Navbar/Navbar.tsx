@@ -10,7 +10,7 @@ const links = [
 
 export default function Navbar() {
   return (
-    <div className="flex h-16 items-center gap-5 text-nowrap bg-blue-400 px-3 text-white">
+    <div className="fixed top-0 z-50 flex h-16 w-full items-center gap-5 text-nowrap bg-blue-400 px-3 text-white">
       <h1 className="text-3xl font-bold">
         <Link to="/">MOVIE</Link>
       </h1>

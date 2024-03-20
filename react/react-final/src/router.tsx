@@ -12,15 +12,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/popular",
+        path: "/popular/:id?",
         element: <Popular />,
       },
       {
-        path: "/coming-soon",
+        path: "/coming-soon/:id?",
         element: <ComingSoon />,
       },
       {
-        path: "/now-playing",
+        path: "/now-playing/:id?",
         element: <NowPlaying />,
       },
     ],

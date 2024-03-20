@@ -94,7 +94,11 @@ export default function SliderArea({ title, datas }: SliderProps) {
           {title}
         </h3>
       </div>
-      <div className={"relative flex h-auto items-center overflow-y-hidden "}>
+      <div
+        className={
+          "relative flex h-auto items-center overflow-x-hidden overflow-y-hidden"
+        }
+      >
         {datas.length === 0 ? (
           <div
             className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}

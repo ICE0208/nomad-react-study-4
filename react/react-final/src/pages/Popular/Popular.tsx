@@ -1,7 +1,8 @@
 import { IMovie } from "@/api";
-import { MovieList } from "@/components";
+import { MovieDetailModal, MovieList } from "@/components";
 import { UseQueryResult } from "@tanstack/react-query";
-import { useOutletContext } from "react-router-dom";
+import { LayoutGroup } from "framer-motion";
+import { useOutletContext, useParams } from "react-router-dom";
 
 export default function Popular() {
   const { results } = useOutletContext() as {
@@ -11,10 +12,15 @@ export default function Popular() {
   const isLoading = results[0].isLoading;
   const result = results[0].data;
 
+  const params = useParams();
+
   return (
-    <div className="flex flex-col items-center overflow-hidden px-16 py-12 font-serif">
-      <h1 className="mb-12 text-3xl">- Popular -</h1>
-      {!isLoading && <MovieList datas={result ?? []} />}
-    </div>
+    <LayoutGroup id="popular">
+      <div className="flex flex-col items-center px-16 py-12 font-serif">
+        <h1 className="mb-12 text-3xl">- Popular -</h1>
+        {!isLoading && <MovieList datas={result ?? []} />}
+      </div>
+      {params?.id && <MovieDetailModal />}
+    </LayoutGroup>
   );
 }

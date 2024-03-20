@@ -1,21 +1,17 @@
 import { useEffect } from "react";
 
-export default function useBlockBodyScroll() {
+const useBlockScroll = () => {
   useEffect(() => {
-    // Prevent Body Scroll
-    const prevScrollY = window.scrollY;
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-    document.body.style.top = `-${prevScrollY}px`;
-    document.body.style.overflowY = "scroll";
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
 
     return () => {
-      // Allow Body Scroll
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-      document.body.style.overflowY = "";
-      window.scrollTo(0, prevScrollY);
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, []);
-}
+};
+
+export default useBlockScroll;

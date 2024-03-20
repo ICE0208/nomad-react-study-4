@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="pt-16">
         <Outlet
           context={{
             results,

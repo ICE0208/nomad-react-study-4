@@ -1,6 +1,7 @@
 import React from "react";
 import LinkWithUnderline from "./LinkWithUnderline";
 import { Link } from "react-router-dom";
+import { useBasePath } from "@/hooks";
 
 const links = [
   { title: "Popular", url: "/popular" },
@@ -9,6 +10,8 @@ const links = [
 ];
 
 export default function Navbar() {
+  const basePath = useBasePath();
+
   return (
     <div className="fixed top-0 z-50 flex h-16 w-full items-center gap-5 text-nowrap bg-blue-400 px-3 text-white">
       <h1 className="text-3xl font-bold">
@@ -18,7 +21,11 @@ export default function Navbar() {
         {links.map((link, i) => {
           return (
             <React.Fragment key={link.url}>
-              <LinkWithUnderline text={link.title} url={link.url} />
+              <LinkWithUnderline
+                text={link.title}
+                url={link.url}
+                curBaseUrl={basePath ?? "/"}
+              />
               {i < links.length - 1 ? <span>|</span> : null}
             </React.Fragment>
           );

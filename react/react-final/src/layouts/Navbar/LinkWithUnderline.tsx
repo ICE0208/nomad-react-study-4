@@ -1,22 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Link, useMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface LinkWithUnderlineProps {
   text: string;
   url: string;
+  curBaseUrl: string;
 }
 
 export default function LinkWithUnderline({
   text,
   url,
+  curBaseUrl,
 }: LinkWithUnderlineProps) {
-  const match = useMatch(url);
-
   return (
     <div className="relative flex flex-col items-center overflow-visible">
       <Link to={url}>{text}</Link>
       <AnimatePresence>
-        {match && (
+        {url === curBaseUrl && (
           <motion.div
             layoutId="underline"
             initial={{ opacity: 0 }}

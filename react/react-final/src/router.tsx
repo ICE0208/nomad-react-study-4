@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import { Home } from "./pages";
+import { Home, Popular } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/popular",
-        element: <h1>Popular</h1>,
+        element: <Popular />,
       },
       {
         path: "/coming-soon",

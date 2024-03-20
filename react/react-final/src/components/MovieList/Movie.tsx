@@ -21,12 +21,16 @@ export default function Movie({ data, basePath }: MovieProps) {
   return (
     <div className="flex cursor-pointer flex-col items-center space-y-2 overflow-visible">
       <motion.div
-        layoutId={data.id + ""}
+        className="aspect-[1/1.5] w-full origin-bottom rounded-3xl bg-[#1b1b1b]"
         whileHover={{ scale: 1.1 }}
-        style={{ backgroundImage: `url(${makeImagePath(data.poster_path)})` }}
-        className="aspect-[1/1.5] w-full origin-bottom overflow-visible rounded-3xl bg-cover"
-        onClick={handleImageClick}
-      ></motion.div>
+      >
+        <motion.div
+          layoutId={data.id + ""}
+          style={{ backgroundImage: `url(${makeImagePath(data.poster_path)})` }}
+          className="h-full w-full rounded-3xl bg-cover"
+          onClick={handleImageClick}
+        ></motion.div>
+      </motion.div>
       <p className="min-h-[60px] text-xl">{data.title}</p>
     </div>
   );

@@ -21,7 +21,7 @@ export default function LinkWithUnderline({
             layoutId="underline"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, scaleX: 0.35 }}
             transition={{
               type: "spring",
               bounce: 0.4,

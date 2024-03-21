@@ -18,7 +18,7 @@ export function getComingSoon(): Promise<IMovie[]> {
   );
 }
 
-export function getMovie(id: string) {
+export function getMovie(id: string): Promise<IMovieDetail> {
   return fetch(`${BASE_URL}/movie?id=${id}`).then((r) => r.json());
 }
 

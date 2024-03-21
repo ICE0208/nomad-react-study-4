@@ -28,13 +28,25 @@ export default function Home() {
       <div className="mb-16 h-96 w-full animate-pulse bg-gray-800"></div>
       <div ref={scope} className="space-y-6 pb-16">
         <div className="slider opacity-0">
-          <SliderArea title="Popular" datas={results[0].data ?? []} />
+          <SliderArea
+            title="Popular"
+            linkTo="/popular"
+            datas={results[0].data ?? []}
+          />
         </div>
         <div className="slider opacity-0">
-          <SliderArea title="Comming Soon" datas={results[1].data ?? []} />
+          <SliderArea
+            title="Coming Soon"
+            linkTo="/coming-soon"
+            datas={results[1].data ?? []}
+          />
         </div>
         <div className="slider opacity-0">
-          <SliderArea title="Now Playing" datas={results[2].data ?? []} />
+          <SliderArea
+            title="Now Playing"
+            linkTo="/now-playing"
+            datas={results[2].data ?? []}
+          />
         </div>
       </div>
     </>

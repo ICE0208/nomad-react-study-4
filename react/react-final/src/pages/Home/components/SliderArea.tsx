@@ -3,10 +3,12 @@ import { AnimatePresence, Variants, motion, useAnimate } from "framer-motion";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useCardPerSlide } from "../hooks";
 import { SliderButton } from ".";
+import { Link } from "react-router-dom";
 
 interface SliderProps {
   title: string;
   datas: IMovie[];
+  linkTo: string;
 }
 
 const movePercent = {
@@ -27,7 +29,7 @@ const cardPerSlide2WidthPerCard = {
 
 export const SLIDER_ANIMATION_DURATION = 0.6;
 
-export default function SliderArea({ title, datas }: SliderProps) {
+export default function SliderArea({ title, datas, linkTo }: SliderProps) {
   const [start, setStart] = useState(0);
   const [wasNext, setWasNext] = useState(true);
   const isButtonDelay = useRef(false);
@@ -90,8 +92,8 @@ export default function SliderArea({ title, datas }: SliderProps) {
   return (
     <div>
       <div>
-        <h3 className="absolute ml-5 font-serif text-3xl font-medium">
-          {title}
+        <h3 className="absolute z-10 ml-5 select-none font-serif text-3xl font-medium">
+          <Link to={linkTo}>{title}</Link>
         </h3>
       </div>
       <div

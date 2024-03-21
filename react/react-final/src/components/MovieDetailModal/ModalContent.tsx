@@ -1,5 +1,6 @@
 import { IMovieDetail, makeImagePath } from "@/api";
 import { runtimeGetHour, runtimeGetMinute } from "@/utils/runtimeFormat";
+import { VoteStarDisplay } from "..";
 
 interface ModalContentProps {
   data: IMovieDetail;
@@ -35,6 +36,7 @@ export default function ModalContent({ data }: ModalContentProps) {
         <span className="text-xl font-semibold italic">
           {data.release_date}
         </span>
+        <VoteStarDisplay vote={data.vote_average} />
         <span className="line-clamp-3">{data.overview}</span>
       </div>
     </>

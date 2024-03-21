@@ -22,7 +22,6 @@ export default function MovieDetailModal() {
     queryKey: ["movie", "detail", id ?? "x"],
     queryFn: () => getMovie(id ?? "x"),
   });
-
   return (
     <div className="fixed top-0 flex h-full w-full items-center justify-center pt-16">
       <div

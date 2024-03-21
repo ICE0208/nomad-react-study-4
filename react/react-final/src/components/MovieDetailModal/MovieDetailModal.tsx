@@ -32,8 +32,9 @@ export default function MovieDetailModal() {
       <motion.div
         layoutId={id}
         className={[
-          "w-[800px] overflow-hidden rounded-2xl bg-[#000000d8]",
-          "aspect-[12/16] md:aspect-[24/18]",
+          "w-[1000px] min-w-[350px] overflow-hidden rounded-2xl bg-[#000000d8]",
+          "aspect-[12/20] sm:aspect-[24/18]",
+          "mx-24 sm:mx-16",
         ].join(" ")}
       >
         {data && <ModalContent data={data} />}

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import { ComingSoon, Home, NowPlaying, Popular } from "./pages";
+import { ComingSoon, Home, NotFound, NowPlaying, Popular } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         element: <NowPlaying />,
       },
     ],
+    errorElement: <NotFound />,
   },
 ]);
 

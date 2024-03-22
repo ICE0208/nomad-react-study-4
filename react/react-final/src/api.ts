@@ -30,6 +30,10 @@ export function makeBgPath(image: string) {
   return `https://image.tmdb.org/t/p/original${image}`;
 }
 
+export function getIMDBUrl(id: string) {
+  return `https://www.imdb.com/title/${id}`;
+}
+
 export interface IMovie {
   adult: boolean;
   backdrop_path: string;

@@ -3,7 +3,7 @@ import { AnimatePresence, Variants, motion, useAnimate } from "framer-motion";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useCardPerSlide } from "../hooks";
 import { SliderButton } from ".";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface SliderProps {
   title: string;
@@ -73,11 +73,13 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
   const variants: Variants = useMemo(
     () => ({
       initial: (wN: boolean) => ({
-        opacity: 0,
-        x: wN ? "100%" : "-100%",
+        opacity: 1,
+        x: wN
+          ? `${movePercent[cardPerSlide]}%`
+          : `${movePercent[cardPerSlide] * -1}%`,
       }),
       animate: (wN: boolean) => ({
-        opacity: [0, 0, 1],
+        opacity: 1,
         x: wN ? "0%" : "0%",
       }),
       exit: (wN: boolean) => ({
@@ -134,6 +136,8 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
                       key={data.title}
                       title={data.title}
                       backdropPath={data.backdrop_path}
+                      id={data.id}
+                      type={title}
                       className={
                         "flex flex-none flex-col items-start px-1 " +
                         cardPerSlide2WidthPerCard[cardPerSlide]
@@ -177,10 +181,14 @@ const Card = ({
   backdropPath,
   title,
   className = "",
+  id,
+  type,
 }: {
   backdropPath: string;
   title: string;
   className?: string;
+  id: number;
+  type: string;
 }) => {
   const [scope, animate] = useAnimate();
   const setTimeoutRef = useRef<NodeJS.Timeout>();
@@ -202,6 +210,12 @@ const Card = ({
     animate(".hover-text", { opacity: 0 });
   };
 
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    navigate(`/${id}?type=${type}`, { state: { prev: true } });
+  };
+
   return (
     <div className={`${className} overflow-visible`} ref={scope}>
       <div className="relative my-4 overflow-visible ">
@@ -210,6 +224,8 @@ const Card = ({
           whileHover={{ scale: 1.4, transition: { delay: 0.3 } }}
           onHoverStart={onHover}
           onHoverEnd={onHoverEnd}
+          onClick={handleImageClick}
+          layoutId={`${id}-${type}`}
         >
           <img
             src={makeImagePath(backdropPath)}

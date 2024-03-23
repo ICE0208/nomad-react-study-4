@@ -1,9 +1,11 @@
 import { IMovie } from "@/api";
 import { UseQueryResult } from "@tanstack/react-query";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { SliderArea } from "./components";
-import { stagger, useAnimate } from "framer-motion";
+import { LayoutGroup, stagger, useAnimate } from "framer-motion";
 import { useEffect } from "react";
+import usePreventDirectModal from "@/hooks/usePreventDirectModal";
+import { MovieDetailModal } from "@/components";
 
 export default function Home() {
   const { results } = useOutletContext() as {
@@ -23,32 +25,38 @@ export default function Home() {
     }
   }, [isLoading, animate, scope]);
 
+  const params = useParams();
+  usePreventDirectModal();
+
   return (
     <>
-      <div className="mb-16 h-96 w-full animate-pulse bg-gray-800"></div>
-      <div ref={scope} className="space-y-6 pb-16">
-        <div className="slider opacity-0">
-          <SliderArea
-            title="Popular"
-            linkTo="/popular"
-            datas={results[0].data ?? []}
-          />
+      <LayoutGroup>
+        <div className="mb-16 h-96 w-full animate-pulse bg-gray-800"></div>
+        <div ref={scope} className="space-y-6 pb-16">
+          <div className="slider opacity-0">
+            <SliderArea
+              title="Popular"
+              linkTo="/popular"
+              datas={results[0].data ?? []}
+            />
+          </div>
+          <div className="slider opacity-0">
+            <SliderArea
+              title="Coming Soon"
+              linkTo="/coming-soon"
+              datas={results[1].data ?? []}
+            />
+          </div>
+          <div className="slider opacity-0">
+            <SliderArea
+              title="Now Playing"
+              linkTo="/now-playing"
+              datas={results[2].data ?? []}
+            />
+          </div>
         </div>
-        <div className="slider opacity-0">
-          <SliderArea
-            title="Coming Soon"
-            linkTo="/coming-soon"
-            datas={results[1].data ?? []}
-          />
-        </div>
-        <div className="slider opacity-0">
-          <SliderArea
-            title="Now Playing"
-            linkTo="/now-playing"
-            datas={results[2].data ?? []}
-          />
-        </div>
-      </div>
+        {params?.id && <MovieDetailModal />}
+      </LayoutGroup>
     </>
   );
 }

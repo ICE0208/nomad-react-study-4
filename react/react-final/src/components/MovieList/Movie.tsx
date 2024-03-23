@@ -21,7 +21,7 @@ export default function Movie({ data, basePath }: MovieProps) {
   return (
     <div className="flex cursor-pointer flex-col items-center space-y-2 overflow-visible">
       <motion.div
-        className="aspect-[1/1.5] w-full origin-bottom rounded-3xl bg-[#1b1b1b]"
+        className="aspect-[1/1.5] w-full max-w-[250px] origin-bottom rounded-3xl bg-[#1b1b1b]"
         whileHover={{ scale: 1.1 }}
       >
         <motion.div

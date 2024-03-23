@@ -147,8 +147,20 @@ export default function ModalContent({ data }: ModalContentProps) {
           </div>
         </div>
       </div>
-      {/* content */}
-      <div className="flex flex-col gap-5 p-8 text-[18px] font-medium text-neutral-300"></div>
+      {/* Fake Contents */}
+      <div className="flex flex-col gap-5 p-8 pb-16">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div className="flex h-[110px] w-full gap-6" key={i}>
+            <div className="aspect-[16/9] h-full rounded-md bg-[#212121]"></div>
+            <div className="flex w-full flex-col justify-between py-1">
+              <div className="h-[20px] w-[140px] rounded-full bg-[#212121]"></div>
+              <div className="h-[14px] w-11/12 rounded-full bg-[#212121]"></div>
+              <div className="h-[14px] w-11/12 rounded-full bg-[#212121]"></div>
+              <div className="h-[14px] w-8/12 rounded-full bg-[#212121]"></div>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

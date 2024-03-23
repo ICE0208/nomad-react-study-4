@@ -236,7 +236,7 @@ const Card = ({
             className={[
               "pointer-events-none absolute left-4 top-3 w-1/2 overflow-visible text-pretty font-serif font-bold opacity-0",
               "shadow-black [text-shadow:1px_1px_2px_var(--tw-shadow-color)]",
-              "text-md sm:text-xl md:text-2xl",
+              "text-md sm:text-lg md:text-xl",
               "hover-text",
             ].join(" ")}
           >

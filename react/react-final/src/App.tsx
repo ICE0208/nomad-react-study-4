@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useQueries } from "@tanstack/react-query";
 import { getComingSoon, getNowPlaying, getPopular } from "./api";
-import { Navbar } from "./layouts";
+import { Footer, Navbar } from "./layouts";
 import { useRef } from "react";
 import { useBasePath } from "./hooks";
 
@@ -31,6 +31,7 @@ function App() {
           }}
         />
       </main>
+      <Footer />
     </>
   );
 }

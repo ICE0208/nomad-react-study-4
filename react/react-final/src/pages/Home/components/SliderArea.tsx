@@ -1,5 +1,5 @@
 import { IMovie } from "@/api";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useCardPerSlide } from "../hooks";
 import { Card, SliderButton } from ".";
@@ -81,16 +81,13 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
       animate: (wN: boolean) => ({
         opacity: 1,
         x: wN ? "0%" : "0%",
-        transition: { duration: 0 },
-      }),
-      exit: (wN: boolean) => ({
-        x: wN
-          ? `${movePercent[cardPerSlide] * -1}%`
-          : `${movePercent[cardPerSlide]}%`,
+        // transition: { duration: 0 },
       }),
     }),
     [cardPerSlide],
   );
+
+  const firstRender = useRef(true);
 
   return (
     <div className="">
@@ -108,52 +105,49 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
           </div>
         ) : (
           <div className="relative flex items-center ">
-            <AnimatePresence initial={false} custom={wasNext} mode="wait">
-              <motion.div
-                variants={variants}
-                custom={wasNext}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                // onAnimationComplete={clearButtonDelay}
-                transition={{
+            <motion.div
+              variants={variants}
+              custom={wasNext}
+              initial={firstRender.current ? "" : "initial"}
+              animate="animate"
+              onAnimationComplete={() => (firstRender.current = false)}
+              transition={{
+                duration: SLIDER_ANIMATION_DURATION,
+                ease: "easeInOut",
+                opacity: {
+                  times: [0, 1, 1],
                   duration: SLIDER_ANIMATION_DURATION,
-                  ease: "easeInOut",
-                  opacity: {
-                    times: [0, 1, 1],
-                    duration: SLIDER_ANIMATION_DURATION,
-                  },
-                }}
-                key={start}
-                className="relative my-12 flex flex-nowrap justify-center overflow-visible"
-              >
-                {sortedDataWithStart.map((data) => {
-                  return (
-                    <Card
-                      key={data.title}
-                      title={data.title}
-                      backdropPath={data.backdrop_path}
-                      id={data.id}
-                      type={title}
-                      className={
-                        "flex flex-none flex-col items-start px-1 " +
-                        cardPerSlide2WidthPerCard[cardPerSlide]
-                      }
-                    />
-                  );
-                })}
-
-                {isNeedOneSpace && (
-                  <div
-                    key="space"
+                },
+              }}
+              key={start}
+              className="relative my-12 flex flex-nowrap justify-center overflow-visible"
+            >
+              {sortedDataWithStart.map((data) => {
+                return (
+                  <Card
+                    key={data.title}
+                    title={data.title}
+                    backdropPath={data.backdrop_path}
+                    id={data.id}
+                    type={title}
                     className={
-                      "min-h-[50px] flex-none " +
+                      "flex flex-none flex-col items-start px-1 " +
                       cardPerSlide2WidthPerCard[cardPerSlide]
                     }
                   />
-                )}
-              </motion.div>
-            </AnimatePresence>
+                );
+              })}
+
+              {isNeedOneSpace && (
+                <div
+                  key="space"
+                  className={
+                    "min-h-[50px] flex-none " +
+                    cardPerSlide2WidthPerCard[cardPerSlide]
+                  }
+                />
+              )}
+            </motion.div>
 
             <div className="pointer-events-none absolute left-0 top-1/2 box-border h-[calc(100%-8rem)] w-full -translate-y-1/2 overflow-hidden">
               <SliderButton

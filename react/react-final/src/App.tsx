@@ -16,13 +16,14 @@ function App() {
   const prevBasePath = useRef("");
 
   const basePath = useBasePath() || "/";
-  if (basePath !== prevBasePath.current || prevBasePath.current === "/") {
+  if (basePath !== prevBasePath.current) {
     window.scrollTo(0, 0);
     prevBasePath.current = basePath;
   }
 
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
+      console.log("?");
       window.scrollTo(0, 0);
     };
   }, []);

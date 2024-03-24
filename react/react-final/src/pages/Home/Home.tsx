@@ -6,6 +6,7 @@ import { LayoutGroup, stagger, useAnimate } from "framer-motion";
 import { useEffect } from "react";
 import usePreventDirectModal from "@/hooks/usePreventDirectModal";
 import { MovieDetailModal } from "@/components";
+import HomeAd from "./components/HomeAd";
 
 export default function Home() {
   const { results } = useOutletContext() as {
@@ -31,8 +32,8 @@ export default function Home() {
   return (
     <>
       <LayoutGroup>
-        <div className="mb-16 h-96 w-full animate-pulse bg-gray-800"></div>
-        <div ref={scope} className="space-y-6 pb-16">
+        <HomeAd datas={results[0].data ?? []} />
+        <div ref={scope} className="mt-16 space-y-6 pb-16">
           <div className="slider opacity-0">
             <SliderArea
               title="Popular"

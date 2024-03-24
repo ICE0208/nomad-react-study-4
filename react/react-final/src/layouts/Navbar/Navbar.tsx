@@ -13,8 +13,8 @@ export default function Navbar() {
   const basePath = useBasePath();
 
   return (
-    <div className="fixed top-0 z-50 flex h-16 w-full items-center gap-5 text-nowrap bg-blue-400 px-3 text-white">
-      <h1 className="text-3xl font-bold">
+    <div className="fixed top-0 z-50 flex h-16 w-full items-center gap-5 text-nowrap px-6 py-10 text-white">
+      <h1 className="text-3xl font-bold drop-shadow-xl">
         <Link to="/">MOVIE</Link>
       </h1>
       <nav className="flex h-full items-center gap-3 overflow-x-visible text-xl font-semibold">

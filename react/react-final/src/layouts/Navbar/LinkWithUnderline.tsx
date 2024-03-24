@@ -27,7 +27,7 @@ export default function LinkWithUnderline({
               bounce: 0.4,
               duration: 0.6,
             }}
-            className="absolute -bottom-1 w-11/12 border-b-4 border-b-[#ffffffc5]"
+            className="absolute -bottom-1 w-11/12 border-b-4 border-b-[#ffffffc5] drop-shadow-xl"
           ></motion.div>
         )}
       </AnimatePresence>

@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="min-h-[100vh]">
         <Outlet
           context={{
             results,

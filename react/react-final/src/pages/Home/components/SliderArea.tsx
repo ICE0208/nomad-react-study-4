@@ -17,6 +17,7 @@ const movePercent = {
   3: 75,
   2: 66,
   1: 50,
+  0: 0,
 };
 
 const cardPerSlide2WidthPerCard = {
@@ -25,6 +26,7 @@ const cardPerSlide2WidthPerCard = {
   3: "w-[25%]",
   2: "w-[33%]",
   1: "w-[50%]",
+  0: "w-[0%]",
 };
 
 export const SLIDER_ANIMATION_DURATION = 0.6;
@@ -97,7 +99,7 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
         </h3>
       </div>
       <div className={"relative flex items-center"}>
-        {datas.length === 0 ? (
+        {datas.length === 0 || cardPerSlide === 0 ? (
           <div
             className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}
           >

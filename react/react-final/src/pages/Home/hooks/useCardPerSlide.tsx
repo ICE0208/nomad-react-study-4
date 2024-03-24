@@ -1,10 +1,10 @@
 import { debounce } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-type CardPerSlideTypes = 1 | 2 | 3 | 4 | 5;
+type CardPerSlideTypes = 1 | 2 | 3 | 4 | 5 | 0;
 
 export default function useCardPerSlide() {
-  const [cardPerSlide, setCardPerSlide] = useState<CardPerSlideTypes>(4);
+  const [cardPerSlide, setCardPerSlide] = useState<CardPerSlideTypes>(0);
 
   const updateCardPerSlide = useCallback(() => {
     const {

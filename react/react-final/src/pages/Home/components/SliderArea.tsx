@@ -103,10 +103,10 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
           <div
             className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}
           >
-            <div className="aspect-[16/9] w-full"></div>
+            <div className="aspect-[16/9] h-[500px] w-full"></div>
           </div>
         ) : (
-          <div className="relative flex items-center ">
+          <div className="relative flex w-full items-center">
             <motion.div
               variants={variants}
               custom={wasNext}
@@ -122,7 +122,7 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
                 },
               }}
               key={start}
-              className="relative my-12 flex flex-nowrap justify-center overflow-visible"
+              className="relative my-12 flex w-full flex-nowrap justify-center overflow-visible"
             >
               {sortedDataWithStart.map((data) => {
                 return (

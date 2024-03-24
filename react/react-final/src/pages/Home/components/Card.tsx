@@ -23,19 +23,25 @@ export default function Card({
 
   const onHover = () => {
     clearTimeout(setTimeoutRef.current);
+    if (!scope.current) return;
     setTimeoutRef.current = setTimeout(() => {
+      if (!scope.current) return;
       animate(scope.current, { zIndex: 500 });
       animate(".card-text", { opacity: 0 }, { duration: 0.1 });
       animate(".hover-text", { opacity: 1 });
+      animate(".hover-text", { scale: 1.4 });
     }, 300);
   };
   const onHoverEnd = () => {
     clearTimeout(setTimeoutRef.current);
+    if (!scope.current) return;
     setTimeoutRef.current = setTimeout(() => {
+      if (!scope.current) return;
       animate(scope.current, { zIndex: "auto" });
     }, 300);
     animate(".card-text", { opacity: 1 });
     animate(".hover-text", { opacity: 0 });
+    animate(".hover-text", { scale: 1 });
   };
 
   const navigate = useNavigate();
@@ -46,20 +52,22 @@ export default function Card({
 
   return (
     <div className={`${className} overflow-visible`} ref={scope}>
-      <div className="relative my-4 overflow-visible ">
+      <div className="relative my-4 w-full overflow-visible">
         <motion.div
           className="cursor-pointer rounded-md"
-          whileHover={{ scale: 1.4, transition: { delay: 0.3 } }}
           onHoverStart={onHover}
           onHoverEnd={onHoverEnd}
           onClick={handleImageClick}
           layoutId={`${id}-${type}`}
         >
-          <img
-            src={makeImagePath(backdropPath)}
-            alt={title}
-            className="aspect-[16/9] rounded-md"
-          />
+          <div className="aspect-[16/9] w-full rounded-md bg-gray-800">
+            <motion.img
+              src={makeImagePath(backdropPath)}
+              whileHover={{ scale: 1.4, transition: { delay: 0.3 } }}
+              alt={title}
+              className="rounded-md"
+            />
+          </div>
           <span
             className={[
               "pointer-events-none absolute left-4 top-3 w-1/2 overflow-visible text-pretty font-serif font-bold opacity-0",

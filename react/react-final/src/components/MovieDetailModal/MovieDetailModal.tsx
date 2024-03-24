@@ -42,7 +42,7 @@ export default function MovieDetailModal() {
         layoutId={`${id}` + (type ? `-${type}` : "")}
         className={[
           "overflow-auto overflow-x-hidden rounded-2xl bg-[#171717]",
-          "aspect-[12/14] min-h-[420px] max-w-[940px] sm:h-[88%] md:aspect-[24/18] md:h-[92%]",
+          "h-[70%] w-[80%] max-w-[800px] sm:h-[70%] sm:w-[85%] md:h-[90%] md:w-[90%]",
           "mx-8 md:mx-12",
           "scrollbar scrollbar-track-[#171717] scrollbar-thumb-slate-500",
         ].join(" ")}

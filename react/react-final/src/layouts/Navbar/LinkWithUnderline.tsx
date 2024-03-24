@@ -14,7 +14,9 @@ export default function LinkWithUnderline({
 }: LinkWithUnderlineProps) {
   return (
     <div className="relative flex flex-col items-center overflow-visible">
-      <Link to={url}>{text}</Link>
+      <Link className="pt-1" to={url}>
+        {text}
+      </Link>
       <AnimatePresence>
         {url === curBaseUrl && (
           <motion.div

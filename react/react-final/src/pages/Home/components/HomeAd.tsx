@@ -107,6 +107,11 @@ export default function HomeAd({ datas }: { datas: IMovie[] }) {
           >
             <ChevronRight />
           </MoveAdIndexBtn>
+          <AdIndexDisplay
+            curIndex={adIndex}
+            dataLength={datasForAd.length}
+            className="absolute bottom-0 right-0 pb-[4vw] pr-[3vw]"
+          />
         </>
       ) : (
         <LoadingAd />
@@ -114,6 +119,32 @@ export default function HomeAd({ datas }: { datas: IMovie[] }) {
     </div>
   );
 }
+
+interface adIndexDisplayProps {
+  curIndex: number;
+  dataLength: number;
+  className?: string;
+}
+
+const AdIndexDisplay = ({
+  curIndex,
+  dataLength,
+  className = "",
+}: adIndexDisplayProps) => {
+  return (
+    <div className={[className, "flex gap-2"].join(" ")}>
+      {Array.from({ length: dataLength }).map((_, i) => (
+        <div
+          key={i}
+          className={[
+            "h-[1vw] w-[1vw] rounded-full bg-white",
+            `${i === curIndex ? "opacity-95" : "opacity-40"}`,
+          ].join(" ")}
+        ></div>
+      ))}
+    </div>
+  );
+};
 interface moveIndexBtnProps {
   onClick: () => void;
   className?: string;

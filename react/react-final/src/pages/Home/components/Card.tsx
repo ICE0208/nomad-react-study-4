@@ -58,7 +58,7 @@ export default function Card({
           <img
             src={makeImagePath(backdropPath)}
             alt={title}
-            className="aspect-[16/9]"
+            className="aspect-[16/9] rounded-md"
           />
           <span
             className={[

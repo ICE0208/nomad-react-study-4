@@ -81,6 +81,7 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
       animate: (wN: boolean) => ({
         opacity: 1,
         x: wN ? "0%" : "0%",
+        transition: { duration: 0 },
       }),
       exit: (wN: boolean) => ({
         x: wN
@@ -92,17 +93,13 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
   );
 
   return (
-    <div>
+    <div className="">
       <div>
         <h3 className="absolute z-10 ml-5 select-none font-serif text-3xl font-medium">
           <Link to={linkTo}>{title}</Link>
         </h3>
       </div>
-      <div
-        className={
-          "relative flex h-auto items-center overflow-x-hidden overflow-y-hidden"
-        }
-      >
+      <div className={"relative flex items-center"}>
         {datas.length === 0 ? (
           <div
             className={`relative ${cardPerSlide2WidthPerCard[cardPerSlide]} mb-8 px-1`}
@@ -110,8 +107,8 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
             <div className="aspect-[16/9] w-full"></div>
           </div>
         ) : (
-          <div className="relative flex items-center overflow-visible">
-            <AnimatePresence initial={false} custom={wasNext} mode="popLayout">
+          <div className="relative flex items-center ">
+            <AnimatePresence initial={false} custom={wasNext} mode="wait">
               <motion.div
                 variants={variants}
                 custom={wasNext}
@@ -128,7 +125,7 @@ export default function SliderArea({ title, datas, linkTo }: SliderProps) {
                   },
                 }}
                 key={start}
-                className="relative flex flex-nowrap justify-center overflow-visible py-12"
+                className="relative my-12 flex flex-nowrap justify-center overflow-visible"
               >
                 {sortedDataWithStart.map((data) => {
                   return (

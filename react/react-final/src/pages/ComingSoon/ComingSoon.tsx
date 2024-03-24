@@ -19,7 +19,7 @@ export default function Popular() {
   return (
     <LayoutGroup id="coming-soon">
       <div className="flex flex-col items-center overflow-hidden px-16 py-12 font-serif">
-        <h1 className="mb-12 text-3xl">- Coming Soon -</h1>
+        <h1 className="mb-12 mt-4 text-3xl">- Coming Soon -</h1>
         {!isLoading && <MovieList datas={result ?? []} />}
       </div>
       {params?.id && <MovieDetailModal />}

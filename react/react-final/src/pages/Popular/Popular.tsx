@@ -20,7 +20,7 @@ export default function Popular() {
     <>
       <LayoutGroup id="popular">
         <div className="flex flex-col items-center px-16 py-12 font-serif">
-          <h1 className="mb-12 text-3xl">- Popular -</h1>
+          <h1 className="mb-12 mt-4 text-3xl">- Popular -</h1>
           {!isLoading && <MovieList datas={result ?? []} />}
         </div>
         {params?.id && <MovieDetailModal />}

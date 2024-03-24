@@ -16,7 +16,7 @@ function App() {
   const prevBasePath = useRef("");
 
   const basePath = useBasePath() || "/";
-  if (basePath !== prevBasePath.current) {
+  if (basePath !== prevBasePath.current || prevBasePath.current === "/") {
     window.scrollTo(0, 0);
     prevBasePath.current = basePath;
   }

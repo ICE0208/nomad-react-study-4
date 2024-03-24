@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useQueries } from "@tanstack/react-query";
 import { getComingSoon, getNowPlaying, getPopular } from "./api";
 import { Footer, Navbar } from "./layouts";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useBasePath } from "./hooks";
 
 function App() {
@@ -20,6 +20,12 @@ function App() {
     window.scrollTo(0, 0);
     prevBasePath.current = basePath;
   }
+
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
   return (
     <>

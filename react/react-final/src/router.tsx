@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ComingSoon, Home, NotFound, NowPlaying, Popular } from "./pages";
 
@@ -8,7 +8,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/:id?",
+        path: "",
+        element: <Navigate to="/home" replace />,
+      },
+      {
+        path: "/home/:id?",
         element: <Home />,
       },
       {

@@ -47,7 +47,7 @@ export default function Card({
   const navigate = useNavigate();
 
   const handleImageClick = () => {
-    navigate(`/${id}?type=${type}`, { state: { prev: true } });
+    navigate(`/home/${id}?type=${type}`, { state: { prev: true } });
   };
 
   return (

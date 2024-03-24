@@ -1,12 +1,11 @@
 import { IMovie } from "@/api";
 import { UseQueryResult } from "@tanstack/react-query";
 import { useOutletContext, useParams } from "react-router-dom";
-import { SliderArea } from "./components";
+import { HomeAd, SliderArea } from "./components";
 import { LayoutGroup, stagger, useAnimate } from "framer-motion";
 import { useEffect } from "react";
 import usePreventDirectModal from "@/hooks/usePreventDirectModal";
 import { MovieDetailModal } from "@/components";
-import HomeAd from "./components/HomeAd";
 
 export default function Home() {
   const { results } = useOutletContext() as {

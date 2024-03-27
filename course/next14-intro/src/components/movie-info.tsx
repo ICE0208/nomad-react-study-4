@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { API_URL } from "@/app/(home)/page";
+
+import { API_URL } from "@/app/constants";
 import styles from "@/styles/movie-info.module.css";
 
-async function getMovie(id: string) {
+export async function getMovie(id: string) {
   const response = await fetch(`${API_URL}/${id}`);
   return response.json();
 }

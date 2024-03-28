@@ -17,19 +17,4 @@
   flex-wrap: wrap;
   gap: 18px 16px;
   padding: 44px 20px;
-  & > div {
-    padding: 6px 8px;
-    color: rgb(81, 81, 81);
-    font-weight: 500;
-    background-color: rgb(236, 236, 236);
-    border: 1px solid black;
-    border-radius: 4px;
-    opacity: 65%;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    &:hover {
-      opacity: 100%;
-      transform: scale(1.05);
-    }
-  }
 }

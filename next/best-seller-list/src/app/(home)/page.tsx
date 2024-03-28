@@ -1,6 +1,8 @@
 import { getBookGenreList, getBookListWithGenre } from "@/api/request";
 import styles from "./home.module.scss";
 import { Metadata } from "next";
+import { useRouter } from "next/navigation";
+import GenreBox from "./components/GenreBox";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -14,7 +16,11 @@ export default async function Home() {
       <h1 className={styles.title}>The New York Times Best Seiler Explorer</h1>
       <div className={styles.genresSpreader}>
         {genreList.map((genreInfo) => (
-          <div key={genreInfo.list_name_encoded}>{genreInfo.display_name}</div>
+          <GenreBox
+            key={genreInfo.list_name_encoded}
+            genreName={genreInfo.display_name}
+            genreCode={genreInfo.list_name_encoded}
+          />
         ))}
       </div>
     </div>

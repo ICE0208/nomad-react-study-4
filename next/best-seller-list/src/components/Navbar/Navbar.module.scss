@@ -1,0 +1,21 @@
+@import "@/styles/_variable.scss";
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+  background-color: white;
+  height: $NAVBAR_HEIGHT;
+  border-bottom: 3px solid rgb(146, 146, 146);
+  z-index: 500;
+}
+
+.link {
+  font-size: 28px;
+  font-weight: 500;
+  color: rgb(91, 91, 91);
+}

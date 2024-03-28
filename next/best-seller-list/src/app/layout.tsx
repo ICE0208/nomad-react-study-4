@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./home.module.scss";
+import "@/styles/globals.scss";
 import { APP_TITLE } from "./constants";
 
 export const metadata: Metadata = {

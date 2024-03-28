@@ -29,7 +29,7 @@ export const getBookGenreList = async (): Promise<GenreResponseResult[]> => {
 // 특정 장르의 책들의 리스트를 가져옵니다.
 export const getBookListWithGenre = async (
   encodedGenreName: string
-): Promise<BookResponseResult[]> => {
+): Promise<BookResponseResult | null> => {
   try {
     const response = await fetch(getUrlOfListWithGenre(encodedGenreName));
     if (!response.ok) {
@@ -39,6 +39,6 @@ export const getBookListWithGenre = async (
     return json.results;
   } catch (error) {
     console.error("Fetching book list with genre failed:", error);
-    return [];
+    return null;
   }
 };

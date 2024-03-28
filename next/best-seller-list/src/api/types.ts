@@ -21,7 +21,7 @@ export interface BookResponseRoot {
   copyright: string;
   num_results: number;
   last_modified: string;
-  results: BookResponseResult[];
+  results: BookResponseResult;
 }
 
 export interface BookResponseResult {

@@ -1,3 +1,5 @@
+@import "@/styles/colors";
+
 .container {
   display: flex;
   justify-content: center;
@@ -9,9 +11,9 @@
   justify-content: space-between;
   width: 800px;
   height: 220px;
-  background-color: whitesmoke;
-  box-shadow: 0px 11px 20px #0000005c;
-  color: rgb(81, 81, 81);
+  background-color: $white-color;
+  box-shadow: 0px 11px 20px $gray-color;
+  color: $black-color;
   padding: 38px;
   box-sizing: border-box;
   overflow: hidden;

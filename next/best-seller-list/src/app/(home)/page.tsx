@@ -1,7 +1,6 @@
 import { getBookGenreList, getBookListWithGenre } from "@/api/request";
 import styles from "./home.module.scss";
 import { Metadata } from "next";
-import { useRouter } from "next/navigation";
 import GenreBox from "./components/GenreBox";
 
 export const metadata: Metadata = {

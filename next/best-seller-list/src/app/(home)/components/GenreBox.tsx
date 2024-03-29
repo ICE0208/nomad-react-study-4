@@ -14,7 +14,7 @@ export default function GenreBox({ genreName, genreCode }: GenreBoxProps) {
   return (
     <div
       className={styles.container}
-      onClick={() => router.push(`list/${genreCode}`)}
+      onClick={() => router.push(`list/${genreCode}/loading`)}
     >
       {genreName}
     </div>

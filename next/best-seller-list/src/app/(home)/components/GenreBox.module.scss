@@ -1,0 +1,17 @@
+@import "@/styles/_colors.scss";
+
+.container {
+  padding: 6px 8px;
+  color: $black-color;
+  font-weight: 500;
+  background-color: $dark-white-color;
+  border: 1px solid $dark-black-color;
+  border-radius: 4px;
+  opacity: 65%;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+  }
+}
